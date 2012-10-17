@@ -88,13 +88,16 @@ hgroup h1 a:hover {-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg
 hgroup h2 {font-family:"Six Caps", "six_capsregular", Impact, sans-serif;font-size:100px;color:#5c5c5c;text-transform:uppercase;line-height:75px;text-shadow:1px 1px 0px #000;}
 hgroup h2 span {color:#828282;font-size:75px;}
 
-aside#about {position:absolute;top:20px;left:50%;width:330px;margin-left:140px;font-size:17px;line-height:23px;min-height:280px;z-index:2;}
-aside#about p {text-shadow:1px 1px 0px #000;display:none;}
-aside#about p:last-child {margin-top:10px;} 
-aside#about h1 {cursor:pointer;position:absolute;bottom:0;left:0;width:26px;height:26px;background:url(/assets/sprite.png) no-repeat -2px -30px;text-indent:-9999px;}
-aside#about h1:hover {background-position:-2px -3px;}
-aside#about h1.btn-close {background-position:-28px -30px;}
-aside#about h1.btn-close:hover {background-position:-28px -3px;}
+aside#about {position:absolute;top:20px;left:50%;width:330px;margin-left:140px;font-size:17px;line-height:23px;min-height:280px;z-index:2;
+  p {text-shadow:1px 1px 0px #000;display:none;
+    &:last-child {margin-top:10px;}
+  } 
+  h1 {cursor:pointer;position:absolute;bottom:0;left:0;width:26px;height:26px;background:url(/assets/sprite.png) no-repeat -2px -30px;text-indent:-9999px;
+    &:hover {background-position:-2px -3px;}
+  }
+  h1.btn-close {background-position:-28px -30px;}
+  h1.btn-close:hover {background-position:-28px -3px;}
+}
 
 footer {text-align:center;font-size:11px;font-family:'trebuchet ms', trebuchet, arial, sans-serif;padding:15px;overflow:hidden;background:url(/assets/trans.png);text-shadow:1px 1px 0px #000;position:relative;clear:both;}
 ul.social {position:absolute;top:9px;right:17px;list-style:none;width:60px;height:24px;}
