@@ -1,18 +1,5 @@
 !!!
 %html{:lang => "en"}
-  %head
-    %title CrowdCulture
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
-    %meta{:charset => "utf-8"}
-    %title Crowd Interactive Culture. We Enjoy Our Culture
-    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}
-    %meta{:content => "Crowd Interactive - http://crowdint.com", :name => "author"}
-    /[if lt IE 9]
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    /[if lt IE 8]
-      <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
-    / js
+  = render 'layouts/head'
   %body
     = yield
