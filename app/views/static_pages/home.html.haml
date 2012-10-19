@@ -1,8 +1,5 @@
-%h4= @feeds["http://feeds.feedburner.com/PaulDixExplainsNothing"].entries.first.title
 - @feeds.keys.each do |url|
   - @feeds[url].entries.each do |entry|
-    %h4= entry.title
-    %h4= entry.summary.inspect
     = get_img_src(entry.summary)
 
 %section#top-page

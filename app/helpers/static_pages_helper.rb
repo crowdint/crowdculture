@@ -1,10 +1,18 @@
 module StaticPagesHelper
 	def get_img_src(entry)
-		idx = entry.index('>');
-		if idx != nil
-			entry[0, idx].html_safe 
-		else
-			entry
-		end
+		html = Nokogiri::HTML(entry)
+		img = html.css("img")
+		img.to_html.html_safe
+	end
+
+	def get_title(entry)
+		html = Nokogiri::HTML(entry)
+		h1 = html.css("h1")
+		h1.to_html.html_safe
+	end
+	def get_p(entry)
+		html = Nokogiri::HTML(entry)
+		p = html.css("p")
+		p.to_html.html_safe
 	end
 end
