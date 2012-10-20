@@ -6,6 +6,7 @@
       %h2
         We Enjoy
         %span Our Culture
+
   %aside#about
     %h1#btn-about
       About this site
@@ -15,6 +16,7 @@
       %a{:href => "mailto:info@crowdint.com", :title => "contact us"} CONTACT US
       OR GO TO
       %a{:href => "http://www.crowdint.com/", :title => "Go to our site"} OUR SITE »
+      
   .clearer
   %footer
     %p Crowd Interactive © 2012, This site is protected by copyright. Under U.S and international law. All rights reserved.
@@ -23,10 +25,27 @@
         %a{:href => "http://www.twitter.com/crowdint", :target => "_blank"} Follow Crowd Interactive on Twitter
       %li.btn-facebook
         %a{:href => "https://www.facebook.com/CrowdInteractive", :target => "_blank"} Follow Crowd Interactive on Twitter
+
 %section#showcase
   #showcase-inner.masonry
     - @feeds.keys.each do |url|
       - @feeds[url].entries.each do |entry|  
         .box.masonry-brick
           .box-inner
-            =get_img_src(entry.summary)
+            %img{:src => get_img_src(entry.summary)}/
+            .cover
+              .mask
+                %a.zoom{:href => get_img_src(entry.summary), :rel => "gallery1", :title => entry.title}
+              %h1
+                %a.zoom{:href => get_img_src(entry.summary), :rel => "gallery2", :title => entry.title}
+                  =entry.title
+
+#helper
+  %p
+    %a{:href => "#", :title => "Back to top"} WE ENJOY OUR CULTURE
+  %a#to-top{:href => "#", :title => "Back to top"} Back to top
+  %ul.social
+    %li.btn-twitter
+      %a{:href => "http://www.twitter.com/crowdint", :target => "_blank"} Follow Crowd Interactive on Twitter
+    %li.btn-facebook
+      %a{:href => "https://www.facebook.com/CrowdInteractive", :target => "_blank"} Follow Crowd Interactive on Twitter
