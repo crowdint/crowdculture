@@ -1,6 +1,6 @@
 namespace :db do
   desc "Update feeds"
-  task :update_feed  => :environment do
+  task :update_feeds  => :environment do
     require 'feedzirra'
     feeds_urls = Feed.all
     a=[]
@@ -9,25 +9,25 @@ namespace :db do
     end
     feeds = Feedzirra::Feed.fetch_and_parse(feeds_urls)
     feeds.keys.each do |url|
+      entries = feeds[url].entries
       entries = sort_entries(feeds[url].entries)
-      news = check_for_news(entries)
-      if !news.empty?
-        news.each do |entry|
-          img =  get_img_src(entry.summary)
-          if !img.blank?
-            author =  get_author(entry.entry_id)
-            Entry.create(feed_id: author, img_url: img.to_s, published_date: entry.published, title: entry.title, entry_id:entry.entry_id)
-          end
-        end
-      end   
+      new = true
+      i =0
+      until new == false
+        new = add_if_new(entries[i])
+      end 
     end
   end
 
     private
-      def check_for_news(entries)
-        news[]
-        i=0
-        #loop that goes until it finds an entry thats already in the database.. if its not it adds it to a new array
+      def add_if_new(entry)
+        img =  get_img_src(entry.summary)
+        if !img.blank?
+          author =  get_author(entry.entry_id)
+          Entry.new(feed_id: author, img_url: img.to_s, published_date: entry.published, title: entry.title, entry_id:entry.entry_id)
+          if entry.save
+          end
+        end
       end
 
       def get_img_src(entry)
