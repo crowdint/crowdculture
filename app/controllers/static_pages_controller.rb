@@ -11,10 +11,10 @@ class StaticPagesController < ApplicationController
   def update
     require 'feedzirra'
     feeds_urls = Feed.all
-    a=[]
+    feeds_urls_array=[]
     feeds_urls.each do |feed|
-      a<<feed.url
+      feeds_urls_array<<feed.url
     end
-    @feeds = Feedzirra::Feed.fetch_and_parse(feeds_urls)
+    @feeds = Feedzirra::Feed.fetch_and_parse(feeds_urls_array)
   end
 end
