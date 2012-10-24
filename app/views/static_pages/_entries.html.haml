@@ -1,0 +1,10 @@
+-@entries.each do |entry|
+  .box.masonry-brick
+    .box-inner
+      %img{:src => entry.img_url}/
+      .cover
+        .mask
+          %a.zoom{:href => entry.img_url, :rel => "gallery1"}
+        %h1
+          %a.zoom{:href => entry.img_url, :rel => "gallery2"}
+            =entry.title

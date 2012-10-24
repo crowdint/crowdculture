@@ -1,2 +1,3 @@
 %footer#main-footer
   %h1 crowdint
+  = link_to 'Load More', root_path(page: 2, per_page: params[:per_page] || 20), class: 'hook', remote: true

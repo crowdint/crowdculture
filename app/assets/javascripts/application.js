@@ -13,3 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+  $('a.hook').bind('inview', function(e,visible) {
+    if( visible ) {
+      $.getScript($(this).attr("href"));
+    }
+  });
+});

@@ -1,0 +1,6 @@
+<% if @entries.all.count>0 -%>
+$('#showcase-inner').append('<%= escape_javascript(render(partial: 'entries')) %>').masonry( 'reload' );
+$('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i)+1, per_page: params[:per_page] || 20) %>').show();
+<% else -%>
+$('a.hook').hide();
+<% end -%>
