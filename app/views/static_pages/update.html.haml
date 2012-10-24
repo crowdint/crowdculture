@@ -1,0 +1,8 @@
+-feeds.keys.each do |url|
+  -entries = sort_entries(feeds[url].entries)
+  -entries.each do |entry|
+    -img =  get_img_src(entry.summary)
+    if !img.blank?
+      -author = get_author(entry.entry_id)
+      -Entry.create(feed_id: author, img_url: img.to_s, published_date: entry.published, title: entry.title, entry_id:entry.entry_id)
+      %h1 ok

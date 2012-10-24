@@ -7,4 +7,14 @@ class StaticPagesController < ApplicationController
       format.js
     end
   end
+
+  def update
+    require 'feedzirra'
+    feeds_urls = Feed.all
+    a=[]
+    feeds_urls.each do |feed|
+      a<<feed.url
+    end
+    @feeds = Feedzirra::Feed.fetch_and_parse(feeds_urls)
+  end
 end
