@@ -28,20 +28,18 @@
 
 %section#showcase
   #showcase-inner.masonry
-    - @feeds.keys.each do |url|
-      - entries = sort_entries(@feeds[url].entries)
-      - entries.each do |entry|
-        - img =  get_img_src(entry.summary)
-        - if !img.blank?
-          .box.masonry-brick
-            .box-inner
-              %img{:src => img}/
-              .cover
-                .mask
-                  %a.zoom{:href => img, :rel => "gallery1"}
-                %h1
-                  %a.zoom{:href => img, :rel => "gallery2"}
-                    =entry.title
+    - @entries.each do |entry|
+      .box.masonry-brick
+        .box-inner
+          %img{:src => entry.img_url}/
+          .cover
+            .mask
+              %a.zoom{:href => entry.img_url, :rel => "gallery1"}
+            %h1
+              %a.zoom{:href => entry.img_url, :rel => "gallery2"}
+                =entry.title
+
+=render 'layouts/footer'
 
 #helper
   %p
