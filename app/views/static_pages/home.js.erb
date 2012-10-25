@@ -1,7 +1,13 @@
-<% if @entries.all.count>0 -%>
+<% if @entries.all.count>0 %>
 $('#showcase-inner').append('<%= escape_javascript(render(partial: 'entries')) %>');
 $('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i)+1, per_page: params[:per_page] || 20) %>').show();
-<% else -%>
+<% else %>
 $('a.hook').hide();
-<% end -%>
-$('#showcase-inner').masonry('reload');
+<% end %>
+imageCount =0;
+  $('.box-inner img').load(function() {
+    imageCount++;
+    if(imageCount == '<%= @entries.all.count%>'){
+      $('#showcase-inner').masonry('reload');
+    }
+  });

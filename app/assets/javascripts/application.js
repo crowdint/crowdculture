@@ -20,4 +20,5 @@ $(document).ready(function() {
       $.getScript($(this).attr("href"));
     }
   });
+
 });
