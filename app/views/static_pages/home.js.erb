@@ -5,9 +5,10 @@ $('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i)+1, per_page: 
 $('a.hook').hide();
 <% end %>
 imageCount =0;
-  $('.box-inner img').load(function() {
-    imageCount++;
-    if(imageCount == '<%= @entries.all.count%>'){
-      $('#showcase-inner').masonry('reload');
-    }
-  });
+$('.box-inner img').load(function() {
+  imageCount++;
+  if(imageCount == '<%= @entries.all.count%>'){
+    $('#showcase-inner').masonry('reload');
+    $('.box.masonry-brick').css('visibility','visible');
+  }
+});

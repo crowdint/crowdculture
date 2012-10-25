@@ -1,5 +1,6 @@
+- v = params[:page].nil? ? 'visibility:visible;' : 'visibility:hidden;'
 -@entries.each do |entry|
-  .box.masonry-brick
+  .box.masonry-brick{:style => v}
     .box-inner
       %img{:src => entry.img_url}/
       .cover
