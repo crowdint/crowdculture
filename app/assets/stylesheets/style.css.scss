@@ -48,21 +48,21 @@ ol, ul {list-style-position:inside;}
 @import url(http://fonts.googleapis.com/css?family=Six+Caps);
 @font-face {
     font-family: 'oswaldregular';
-    src: url('../fonts/oswald-regular-webfont.eot');
-    src: url('../fonts/oswald-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/oswald-regular-webfont.woff') format('woff'),
-         url('../fonts/oswald-regular-webfont.ttf') format('truetype'),
-         url('../fonts/oswald-regular-webfont.svg#oswaldregular') format('svg');
+    src: url('/assets/oswald-regular-webfont.eot');
+    src: url('/assets/oswald-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/oswald-regular-webfont.woff') format('woff'),
+         url('/assets/oswald-regular-webfont.ttf') format('truetype'),
+         url('/assets/oswald-regular-webfont.svg#oswaldregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'six_capsregular';
-    src: url('../fonts/sixcaps-webfont.eot');
-    src: url('../fonts/sixcaps-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/sixcaps-webfont.woff') format('woff'),
-         url('../fonts/sixcaps-webfont.ttf') format('truetype'),
-         url('../fonts/sixcaps-webfont.svg#six_capsregular') format('svg');
+    src: url('/assets/sixcaps-webfont.eot');
+    src: url('/assets/sixcaps-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/sixcaps-webfont.woff') format('woff'),
+         url('/assets/sixcaps-webfont.ttf') format('truetype'),
+         url('/assets/sixcaps-webfont.svg#six_capsregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }

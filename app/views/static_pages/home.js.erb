@@ -1,8 +1,9 @@
 <% if @entries.all.count>0 %>
 $('#showcase-inner').append('<%= escape_javascript(render(partial: 'entries')) %>');
-$('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i)+1, per_page: params[:per_page] || 20) %>').show();
+$('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i)+1, per_page: params[:per_page] || 15) %>').show();
 <% else %>
 $('a.hook').hide();
+$('#main-footer').append('<h1>CrowdInt</h1>');
 <% end %>
 imageCount =0;
 $('.box-inner img').load(function() {

@@ -1,3 +1,2 @@
 %footer#main-footer
-  %h1
-    = link_to 'Load More', root_path(page: 2, per_page: params[:per_page] || 20), class: 'hook', remote: true
+  = link_to 'Load More', root_path(page: 2, per_page: params[:per_page] || 15), class: 'hook', remote: true, id: 'more-items'
