@@ -3,14 +3,10 @@
   .box.masonry-brick{:style => v}
     .box-inner
       %img{:src => entry.img_url}/
-      .cover
-        .mask
-          %a.zoom{:href => entry.img_url, :rel => "gallery1"}
-        %h1
-          %a.zoom{:href => entry.img_url, :rel => "gallery2"}
-            =entry.title
-        .social-items
-          %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=#{entry.img_url}&amp;send=false&amp;layout=button_count&amp;width=95&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21", :style => "border:none; overflow:hidden; width:95px; height:21px;"}
-          %a.twitter-share-button{"data-dnt" => "true", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
-          :javascript
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+      .mask
+        %a.zoom{:href => entry.img_url, :alt => entry.title, :rel => "gallery1"}
+      %h1
+        %a.zoom{:href => entry.img_url, :alt => entry.title, :rel => "gallery2"}
+          =entry.title
+      .social-items
+        %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
