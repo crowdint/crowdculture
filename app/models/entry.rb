@@ -18,4 +18,8 @@ class Entry < ActiveRecord::Base
   validates :entry_id, presence: true, uniqueness: { case_sensitive: false }
 
   default_scope order: 'entries.published_date DESC'
+
+
+  
+  
 end
