@@ -36,7 +36,9 @@ $(document).ready ->
 
 window.onload = (->
   $("a.hook").bind "inview", (e, visible) ->
-    $.getScript $(this).attr("href")  if visible
+    if visible
+      $.getScript $(this).attr("href")
+      $(this).text('Loading..');
 
 )
 
