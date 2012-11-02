@@ -16,3 +16,4 @@
 //= require jquery.fancybox.pack.js
 //= require jquery.inview.js
 //= require jquery.masonry.min.js
+//= require modernizr

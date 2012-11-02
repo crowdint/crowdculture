@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem "haml-rails"
 gem 'feedzirra'
 gem "will_paginate", "~> 3.0.3"
+gem 'modernizr-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
