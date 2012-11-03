@@ -43,7 +43,7 @@ class Feed < ActiveRecord::Base
 
     def check_for_news(entries, news)
       entries.each do |entry|
-        if Entry.exists?(["entry_id = '#{entry.entry_id}' or title='#{entry.title}'"])
+        if Entry.exists?(:entry_id => entry.entry_id)
           break
         else
           news<<entry

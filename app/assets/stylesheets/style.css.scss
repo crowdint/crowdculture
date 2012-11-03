@@ -70,7 +70,7 @@ ol, ul {list-style-position:inside;}
 body {background:url(/assets/bg-closed.jpg) repeat #191919;font-family:'Oswald', 'oswaldregular', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px;font-weight:normal;color:#999;}
 body, html {position:relative;}
 a, a:visited {color:#7bc3c3;text-decoration:none;}
-a:hover {color:#fff;text-decoration:none;}
+.no-touch a:hover {color:#fff;text-decoration:none;}
 h1, h2, h3, h4, h5 {font-family:'Oswald', 'oswaldregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:normal;}
 
 .no-touch hgroup h1 a, .no-touch .mask, .no-touch .social-items, .no-touch .box-inner.twitter {-o-transition:all ease 0.4s;-moz-transition: all ease 0.4s;-webkit-transition: all ease 0.4s;transition: all ease 0.4s;}

@@ -1,16 +1,20 @@
 $(document).ready ->
   if Modernizr.touch
-    $('.box a').css('visibility','hidden')
-    $(".box").live "click", (e) ->
+    if Modernizr.mq('only all and (max-width: 480px)')
+      $(".box").live "click", (e) ->
+        e.preventDefault();
+    else
       $('.box a').css('visibility','hidden')
-      $(this).children().children().eq(2).children().css('visibility','visible')
-
-    $(".zoom").fancybox()
-    $(".zoom").fancybox 
-      beforeShow: ->
-        @title = $(@element).attr("alt")
-      beforeClose: ->
+      $(".box").live "click", (e) ->
         $('.box a').css('visibility','hidden')
+        $(this).children().children().eq(2).children().css('visibility','visible')
+
+      $(".zoom").fancybox()
+      $(".zoom").fancybox 
+        beforeShow: ->
+          @title = $(@element).attr("alt")
+        beforeClose: ->
+          $('.box a').css('visibility','hidden')
   else
     $(".zoom").fancybox()
     $(".zoom").fancybox 
