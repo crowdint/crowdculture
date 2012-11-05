@@ -1,20 +1,18 @@
 $(document).ready ->
   if Modernizr.touch
     if Modernizr.mq('only all and (max-width: 480px)')
-      $(".box").live "click", (e) ->
-        e.preventDefault();
+      $('.box a').removeAttr('href')
     else
       $('.box a').css('visibility','hidden')
       $(".box").live "click", (e) ->
         $('.box a').css('visibility','hidden')
-        $(this).children().children().eq(2).children().css('visibility','visible')
+        $(this).find('a').css('visibility','visible')
 
-      $(".zoom").fancybox()
       $(".zoom").fancybox 
         beforeShow: ->
           @title = $(@element).attr("alt")
-        beforeClose: ->
           $('.box a').css('visibility','hidden')
+          
   else
     $(".zoom").fancybox()
     $(".zoom").fancybox 
@@ -50,6 +48,9 @@ window.onload = (->
     if visible
       $.getScript $(this).attr("href")
       $(this).text('Loading..');
+
+  $("a.hook").bind "click", ->
+    $(this).text('Loading..');
 
 )
 

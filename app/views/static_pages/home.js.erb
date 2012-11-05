@@ -1,16 +1,23 @@
 <% if @entries.all.count>0 %>
-$('#showcase-inner').append('<%= escape_javascript(render(partial: 'entries')) %>');
-$('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i)+1, per_page: params[:per_page] || 10) %>').show();
+  $('#showcase-inner').append('<%= escape_javascript(render(partial: 'entries')) %>');
+  $('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i)+1, per_page: params[:per_page] || 10) %>').show();
 <% else %>
-$('a.hook').hide();
+  $('a.hook').hide();
 <% end %>
 imageCount =0;
 $('.box-inner img').load(function() {
   imageCount++;
   if(imageCount == '<%= @entries.all.count%>'){
-    $('#showcase-inner').masonry('reload');
-    $('.box.masonry-brick').css('visibility','visible');
-    twttr.widgets.load();
-    $('a.hook').text('Load More');
+    $('#showcase-inner').masonry('reload', function(){
+      $('.box.masonry-brick').css('visibility','visible');
+      $('a.hook').text('Load More');
+      twttr.widgets.load();
+    });
+    if (Modernizr.touch){
+      if (!Modernizr.mq('only all and (max-width: 480px)'))
+        $('.box a').css('visibility','hidden');
+      else 
+        $('.box a').removeAttr('href');
+    } 
   }
 });

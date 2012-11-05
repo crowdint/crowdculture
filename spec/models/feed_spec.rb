@@ -12,5 +12,11 @@
 require 'spec_helper'
 
 describe Feed do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it {should respond_to(:author)}
+  it {should respond_to(:url)}
+  
+  it "is invalid without author or url" do
+    feed = Feed.new
+    feed.should_not be_valid
+  end
 end

@@ -13,6 +13,7 @@ class Feed < ActiveRecord::Base
   attr_accessible :author, :url
   has_many :entries
 
+  validates :author, :url, presence: true
 
   class << self
     def update_feeds
