@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121102001824) do
+ActiveRecord::Schema.define(:version => 20121105223614) do
 
   create_table "entries", :force => true do |t|
     t.integer  "feed_id"
@@ -21,11 +21,13 @@ ActiveRecord::Schema.define(:version => 20121102001824) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.string   "entry_id"
+    t.string   "content_type"
   end
 
-  add_index "entries", ["entry_id"], :name => "entries_id_index", :unique => true
-  add_index "entries", ["published_date"], :name => "entries_published_date_index"
-  add_index "entries", ["title"], :name => "entries_title_index"
+  add_index "entries", ["content_type"], :name => "index_entries_on_content_type"
+  add_index "entries", ["entry_id"], :name => "altered_entries_id_index", :unique => true
+  add_index "entries", ["published_date"], :name => "altered_entries_published_date_index"
+  add_index "entries", ["title"], :name => "altered_entries_title_index"
 
   create_table "feeds", :force => true do |t|
     t.string   "url"

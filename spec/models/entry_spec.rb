@@ -20,8 +20,9 @@ describe Entry do
   it {should respond_to(:entry_id)}
   it {should respond_to(:feed_id)}
   it {should respond_to(:published_date)}
+  it {should respond_to(:content_type)}
   
-  it "is should have title, img_url, entry_id, feed_id and published_date" do
+  it "is should have title, img_url, entry_id, feed_id, published_date & type" do
     entry = Entry.new
     entry.should_not be_valid
   end

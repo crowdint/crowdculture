@@ -35,11 +35,21 @@ class Feed < ActiveRecord::Base
     def add_news(entries)
       entries.each do |entry|
         img =  get_img_src(entry.summary)
-        if !img.blank?
-          author =  get_author(entry.entry_id)
-          Entry.create(feed_id: author, img_url: img.to_s, published_date: entry.published, title: entry.title, entry_id:entry.entry_id)
-        end
+        author =  get_author(entry.entry_id)
+        type = get_type(img, author)
+        img = get_link_href(entry.summary) unless !img.blank?
+        Entry.create(feed_id: author, img_url: img.to_s, published_date: entry.published, title: entry.title, entry_id:entry.entry_id, content_type: type)
       end  
+    end
+
+    def get_type(img, author)
+      if !img.blank?
+        type = 'image'
+      elsif author == 4
+        type = 'tweet'
+      else
+        type = 'quote'
+      end
     end
 
     def check_for_news(entries, news)
@@ -56,6 +66,11 @@ class Feed < ActiveRecord::Base
     def get_img_src(entry)
       html = Nokogiri::HTML(entry)
       img = html.css('img/@src')
+    end
+
+    def get_link_href(entry)
+      html = Nokogiri::HTML(entry)
+      url = html.css('a/@href')
     end
 
     def get_author(entry)

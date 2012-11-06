@@ -5,13 +5,13 @@
   $('a.hook').hide();
 <% end %>
 imageCount =0;
-$('.box-inner img').load(function() {
+$('.image img').load(function() {
   imageCount++;
-  if(imageCount == '<%= @entries.all.count%>'){
+  if(imageCount == '<%= @no_images%>'){
     $('#showcase-inner').masonry('reload', function(){
-      $('.box.masonry-brick').css('visibility','visible');
       $('a.hook').text('Load More');
       twttr.widgets.load();
+      $('.box').css('visibility','visible');
     });
     if (Modernizr.touch){
       if (!Modernizr.mq('only all and (max-width: 480px)'))

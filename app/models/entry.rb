@@ -13,10 +13,10 @@
 #
 
 class Entry < ActiveRecord::Base
-  attr_accessible :feed_id, :img_url, :published_date, :title, :entry_id
+  attr_accessible :feed_id, :img_url, :published_date, :title, :entry_id, :content_type
   belongs_to :feed
   validates :entry_id, presence: true, uniqueness: { case_sensitive: false }
-  validates :feed_id, :img_url, :published_date, :title, presence: true
+  validates :feed_id, :published_date, :title, :content_type, presence: true
 
   default_scope order: 'entries.published_date DESC'
   

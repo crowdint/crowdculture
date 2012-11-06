@@ -1,8 +1,9 @@
 $(document).ready ->
   if Modernizr.touch
     if Modernizr.mq('only all and (max-width: 480px)')
-      $('.box a').removeAttr('href')
+      $('.image a').removeAttr('href')
     else
+      $('.ghost').css('visibility','visible')
       $('.box a').css('visibility','hidden')
       $(".box").live "click", (e) ->
         $('.box a').css('visibility','hidden')
@@ -11,11 +12,9 @@ $(document).ready ->
       $(".zoom").fancybox 
         beforeShow: ->
           @title = $(@element).attr("alt")
-          $('.box a').css('visibility','hidden')
-          
+          $('.box a').css('visibility','hidden')        
   else
-    $(".zoom").fancybox()
-    $(".zoom").fancybox 
+    $(".zoom").fancybox
       beforeShow: ->
         @title = $(@element).attr("alt")
 
