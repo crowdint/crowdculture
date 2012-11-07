@@ -14,10 +14,10 @@ $('.image img').load(function() {
       $('.box').css('visibility','visible');
     });
     if (Modernizr.touch){
-      if (!Modernizr.mq('only all and (max-width: 480px)'))
-        $('.box a').css('visibility','hidden');
-      else 
-        $('.box a').removeAttr('href');
+      if (!Modernizr.mq('only all and (max-width: 480px)')){
+        $('.ghost').css('visibility','visible');
+      }else
+        $('.box .zoom').removeAttr('href');   
     } 
   }
 });

@@ -114,11 +114,11 @@ ul.social li.btn-twitter {margin-right:6px;}
 .quote{width: 80px;}
 .quote a, .quote a:visited {color:#FFF;}
 
-.image:hover h1 {top:40%;}
+.no-touch .image:hover h1 {top:40%;}
 .box h1:hover {text-shadow:0px 0px 15px #fff}
-.box:hover .social-items {top:8px;}
+.no-touch .box:hover .social-items {top:8px;}
 .no-touch .mask {width:1123px;height:1029px;background:url(/assets/trans3.png);position:absolute;top:105%;left:105%}
-.box:hover .mask {top:-300px;left:-300px}
+.no-touch .box:hover .mask {top:-300px;left:-300px}
 
 .touch .mask {width:1123px;height:1029px;background:url(/assets/trans2.png);position:absolute;top:105%;left:105%}
 .mask a {width:100%;height:100%;;display:block;text-indent:-9999px;}
@@ -127,6 +127,11 @@ ul.social li.btn-twitter {margin-right:6px;}
 .zoomit {width:73px;height:22px;background:url(/assets/sprite.png) no-repeat -127px -219px;position:absolute;float:right;}
 .ghost{visibility:hidden};
 
+.show{
+  h1{top:40%;}
+  .social-items {top:8px;}
+  .mask {top:-300px;left:-300px}
+}
 
 #more-items, #more-items:visited {padding:10px;font-size:15px;text-align:center;background:#ccc;display:block;color:#999;text-shadow:0px 1px 0px #fff;background:#c2c2c2;text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);color:#666;text-transform:uppercase}
 #more-items:hover {background:#7bc3c3;color:#fff;text-shadow:0px 1px 0px rgba(0, 0, 0, 0.3);}

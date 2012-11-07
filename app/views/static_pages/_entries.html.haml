@@ -1,23 +1,27 @@
 - v = params[:page].nil? ? 'visibility:visible;' : 'visibility:hidden;'
 -@entries.each do |entry|
-  - if entry.content_type == 'image'
-    .box.image{:style => v}
-      .box-inner
-        %img{:src => entry.img_url}/
-        .mask
-          %a.zoom{:href => entry.img_url, :alt => entry.title, :rel => "gallery1"}
-        %h1
-          %a.zoom{:href => entry.img_url, :alt => entry.title, :rel => "gallery2"}
-            =entry.title
-        .social-items
-          .zoomit.ghost{href:'#'}
-          %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
-  - else
-    .box.quote{:style => "#{v} background:#{get_color};"}
-      .box-inner
-        %h1
-          %a{href: entry.img_url}
-            =entry.title
-        .social-items
-          .zoomit.ghost{href:'#'}
-          %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
+  - case entry.content_type
+    -when 'image'
+      .box.image{:style => v}
+        .box-inner
+          %img{:src => entry.img_url}/
+          .mask
+            %a.zoom{:href => entry.img_url, :alt => entry.title, :rel => "gallery1"}
+          %h1
+            %a.zoom{:href => entry.img_url, :alt => entry.title, :rel => "gallery2"}
+              =entry.title
+          .social-items
+            .zoomit.ghost{href:'#'}
+            %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
+    -when 'link'
+      .box.quote{:style => "#{v} background:#{get_color};"}
+        .box-inner
+          %h1
+            %a{href: entry.img_url}
+              =entry.title
+          .social-items
+            .zoomit.ghost{href:'#'}
+            %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
+    -when 'video'
+      .box.video{:style => v}
+        %iframe{:allowFullScreen => "", :frameborder => "0", :height => "auto", :mozallowfullscreen => "", :src => entry.img_url, :webkitAllowFullScreen => "", :width => "auto"}

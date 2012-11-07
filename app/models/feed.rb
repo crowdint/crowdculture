@@ -34,22 +34,35 @@ class Feed < ActiveRecord::Base
 
     def add_news(entries)
       entries.each do |entry|
-        img =  get_img_src(entry.summary)
         author =  get_author(entry.entry_id)
-        type = get_type(img, author)
-        img = get_link_href(entry.summary) unless !img.blank?
-        Entry.create(feed_id: author, img_url: img.to_s, published_date: entry.published, title: entry.title, entry_id:entry.entry_id, content_type: type)
+        url_type = get_content_url(entry, author)
+        Entry.create(feed_id: author, img_url: url_type[0].to_s, published_date: entry.published, title: entry.title, entry_id:entry.entry_id, content_type: url_type[1])
       end  
     end
 
-    def get_type(img, author)
-      if !img.blank?
-        type = 'image'
+    def get_content_url(entry, author)
+      a=[]
+      url=''
+      type=''
+      if author == 1
+        url = get_img_src(entry.summary)
+        type = 'image' unless url.blank?
+        if url.blank?
+          url = get_video_src(entry.summary)
+          type = 'video'
+        end
+        if url.blank?
+          url = get_link_href(entry.summary)
+          type = 'link'
+        end
+        type = 'quote' unless !url.blank?
       elsif author == 4
         type = 'tweet'
       else
-        type = 'quote'
+        url = get_img_src(entry.summary)
+        type = 'image'
       end
+      a=[url,type]
     end
 
     def check_for_news(entries, news)
@@ -73,13 +86,20 @@ class Feed < ActiveRecord::Base
       url = html.css('a/@href')
     end
 
+    def get_video_src(entry)
+      html = Nokogiri::HTML(entry)
+      url = html.css('iframe/@src')
+    end
+
     def get_author(entry)
       if entry.index('culture') != nil
-        author = 1
+        author = 1 #tumblr
+      elsif entry.index('flickr') != nil
+        author = 2 #flickr
       elsif entry.index('amazonaws') != nil
-        author = 3
-      else 
-        author = 2
+        author = 3 #instagram
+      else
+        author = 4 #tweeter
       end
       author
     end

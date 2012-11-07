@@ -1,19 +1,20 @@
 $(document).ready ->
-  if Modernizr.touch
-    if Modernizr.mq('only all and (max-width: 480px)')
+  if Modernizr.touch                                    #if touchscreen
+    if Modernizr.mq('only all and (max-width: 480px)')  #touchscreen w/small screen
       $('.image a').removeAttr('href')
-    else
+      $("body").delegate ".box", "click", (e) ->
+        $('.box').removeClass('show')
+        $(this).addClass('show')
+    else                                                #touchscreen w/big screen
       $('.ghost').css('visibility','visible')
-      $('.box a').css('visibility','hidden')
-      $(".box").live "click", (e) ->
-        $('.box a').css('visibility','hidden')
-        $(this).find('a').css('visibility','visible')
+      $("body").delegate ".box", "click", (e) ->
+        $('.box').removeClass('show')
+        $(this).addClass('show')
 
       $(".zoom").fancybox 
         beforeShow: ->
-          @title = $(@element).attr("alt")
-          $('.box a').css('visibility','hidden')        
-  else
+          @title = $(@element).attr("alt")      
+  else                                                  #not touchscreen
     $(".zoom").fancybox
       beforeShow: ->
         @title = $(@element).attr("alt")
