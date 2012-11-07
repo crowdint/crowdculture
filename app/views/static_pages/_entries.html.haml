@@ -23,5 +23,17 @@
             .zoomit.ghost{href:'#'}
             %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
     -when 'video'
-      .box.video{:style => v}
-        %iframe{:allowFullScreen => "", :frameborder => "0", :height => "auto", :mozallowfullscreen => "", :src => entry.img_url, :webkitAllowFullScreen => "", :width => "auto"}
+      .box.vid{:style => "background-color:#{get_color};"}
+        .box-inner
+          .play
+          .mask
+            %a.zoom{:href => entry.img_url, target:'_blank'}
+          %h1
+            %a{href: entry.img_url, target:'_blank'}
+              Birthdayss perrones
+          %p
+            %a{href: entry.img_url, target:'_blank'}
+              Watch video
+          .social-items
+            .zoomit.ghost{href:'#'}
+            %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet

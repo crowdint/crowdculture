@@ -1,4 +1,26 @@
 $(document).ready ->
+  get_entries_per_page = ->
+    per_page = 0
+    if Modernizr.mq('only all and (max-width: 480px)') 
+      per_page = 5
+    else if Modernizr.mq('only all and (max-width: 1024px)') 
+      per_page = 10
+    else if Modernizr.mq('only all and (max-width: 1280px)') 
+      per_page = 15
+    else if Modernizr.mq('only all and (max-width: 1920px)') 
+      per_page = 20
+    else if Modernizr.mq('only all and (max-width: 2560px)') 
+      per_page = 35
+    else per_page = 10
+    show_entries(per_page)
+
+  show_entries = (per_page) ->
+    $.ajax
+      url: '/static_pages/show_entries'
+      data: {page:1,per_page:per_page}
+
+  get_entries_per_page()
+
   if Modernizr.touch                                    #if touchscreen
     if Modernizr.mq('only all and (max-width: 480px)')  #touchscreen w/small screen
       $('.image a').removeAttr('href')
@@ -51,6 +73,7 @@ window.onload = (->
 
   $("a.hook").bind "click", ->
     $(this).text('Loading..');
+
 
 )
 

@@ -1,2 +1,2 @@
 %footer#main-footer
-  = link_to 'Load More', root_path(page: 2, per_page: params[:per_page] || 10), class: 'hook', remote: true, id: 'more-items'
+  = link_to 'Load More', show_entries_path(page: 2, per_page: params[:per_page] || 10), class: 'hook', remote: true, id: 'more-items'

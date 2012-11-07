@@ -19,5 +19,9 @@ class Entry < ActiveRecord::Base
   validates :feed_id, :published_date, :title, :content_type, presence: true
 
   default_scope order: 'entries.published_date DESC'
+
+  def self.per_page
+    10
+  end
   
 end

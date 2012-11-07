@@ -1,0 +1,23 @@
+<% if @entries.all.count>0 %>
+  $('#showcase-inner').append('<%= escape_javascript(render(partial: 'entries')) %>');
+  $('a.hook').attr('href', '<%= show_entries_path(page: (params[:page].to_i)+1, per_page: params[:per_page]) %>');
+<% else %>
+  $('a.hook').hide();
+<% end %>
+imageCount =0;
+$('.image img').load(function() {
+  imageCount++;
+  if(imageCount == '<%= @no_images%>'){
+    $('#showcase-inner').masonry('reload', function(){
+      $('a.hook').text('Load More');
+      twttr.widgets.load();
+      $('.box').css('visibility','visible');
+    });
+    if (Modernizr.touch){
+      if (!Modernizr.mq('only all and (max-width: 480px)')){
+        $('.ghost').css('visibility','visible');
+      }else
+        $('.box .zoom').removeAttr('href');   
+    } 
+  }
+});
