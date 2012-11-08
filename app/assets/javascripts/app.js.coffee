@@ -38,6 +38,19 @@ $(document).ready ->
     $(".zoom").fancybox
       beforeShow: ->
         @title = $(@element).attr("alt")
+    $("body").delegate ".video", "click", ->
+      $.fancybox
+        padding: 0
+        autoScale: false
+        transitionIn: "none"
+        transitionOut: "none"
+        title: @title
+        width: 600
+        height: 400
+        href: @href.replace(new RegExp("([0-9])", "i"), "moogaloop.swf?clip_id=$1")
+        type: "swf"
+
+      false
 
   init_masonry()
   

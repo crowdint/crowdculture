@@ -27,12 +27,12 @@
         .box-inner
           .play
           .mask
-            %a.zoom{:href => entry.img_url, target: '_blank'}
+            %a.video{:href => entry.img_url, target: '_blank'}
           %h1
             %a{href: entry.img_url, target:'_blank'}
               =entry.title
           %p
-            %a{href: entry.img_url, target:'_blank'}
+            %a.video{href: entry.img_url, target:'_blank'}
               Watch video
           .social-items
             .zoomit.ghost{href:'#'}

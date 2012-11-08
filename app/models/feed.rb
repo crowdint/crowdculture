@@ -44,7 +44,7 @@ class Feed < ActiveRecord::Base
       a=[]
       url=''
       type=''
-      if author == 1
+      if author == 1 #tumblr
         url = get_img_src(entry.summary)
         type = 'image' unless url.blank?
         if url.blank?
@@ -56,7 +56,7 @@ class Feed < ActiveRecord::Base
           type = 'link'
         end
         type = 'quote' unless !url.blank?
-      elsif author == 4
+      elsif author == 4 #tweeter
         type = 'tweet'
       else
         url = get_img_src(entry.summary)
@@ -89,6 +89,7 @@ class Feed < ActiveRecord::Base
     def get_video_src(entry)
       html = Nokogiri::HTML(entry)
       url = html.css('iframe/@src')
+      "http://player.vimeo.com/video/#{url.to_s[/\d+/]}"
     end
 
     def get_author(entry)
