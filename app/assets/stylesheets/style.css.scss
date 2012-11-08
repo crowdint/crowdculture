@@ -128,11 +128,15 @@ ul.social li.btn-twitter {margin-right:6px;}
 .zoomit {width:73px;height:22px;background:url(/assets/sprite.png) no-repeat -127px -219px;position:absolute;float:right;}
 .ghost{visibility:hidden};
 
-.vid h1 {font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#fff;width:96%;display:block;margin:0 1.5em 1.5em 1.5em;}
-.vid a{color:#fff;}
-.vid p{position:absolute;top:-30px;right:0;text-align:center;display: block;width: 100%;text-transform:uppercase;}
-.vid:hover p{top:80px;}
-.play{background-image:url(/assets/watch-it.png);background-repeat: no-repeat;background-position: center; width:100%; height:160px;}
+.vid{
+  h1 {font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#fff;width:100%;display:block;}
+  a{color:#fff;}
+  p{position:absolute;top:-30px;right:0;text-align:center;display: block;width: 100%;text-transform:uppercase;}
+  &:hover {p{top:80px;}}
+  .play{background-image:url(/assets/watch-it.png);background-repeat: no-repeat;background-position: center; width:100%; height:160px;}
+  .box-inner{padding: 1.5em;}
+} 
+
 .show{
   h1{top:40%;}
   .social-items {top:8px;}

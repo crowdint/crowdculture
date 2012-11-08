@@ -8,7 +8,7 @@ $(document).ready ->
     else if Modernizr.mq('only all and (max-width: 1280px)') 
       per_page = 15
     else if Modernizr.mq('only all and (max-width: 1920px)') 
-      per_page = 20
+      per_page = 25
     else if Modernizr.mq('only all and (max-width: 2560px)') 
       per_page = 35
     else per_page = 10
@@ -23,12 +23,10 @@ $(document).ready ->
 
   if Modernizr.touch                                    #if touchscreen
     if Modernizr.mq('only all and (max-width: 480px)')  #touchscreen w/small screen
-      $('.image a').removeAttr('href')
       $("body").delegate ".box", "click", (e) ->
         $('.box').removeClass('show')
         $(this).addClass('show')
     else                                                #touchscreen w/big screen
-      $('.ghost').css('visibility','visible')
       $("body").delegate ".box", "click", (e) ->
         $('.box').removeClass('show')
         $(this).addClass('show')
