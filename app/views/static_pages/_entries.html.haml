@@ -23,7 +23,7 @@
             .zoomit.ghost{href:'#'}
             %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
     -when 'video'
-      .box.vid{:style => "background-color:#{get_color};"}
+      .box.vid{:style => "#{v} background-color:#{get_color};"}
         .box-inner
           .play
           .mask

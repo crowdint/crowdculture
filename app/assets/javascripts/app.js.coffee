@@ -77,14 +77,28 @@ $(document).ready ->
       $("#helper").slideUp 100
 
 window.onload = (->
-  $("a.hook").bind "inview", (e, visible) ->
+  load_more = (e) ->
+    e.preventDefault()
+    $('.loading').show()
+    $(this).hide()
+    page = $(this).attr("data-page")
+    per_page = $(this).attr("data-ppage")
+    $.ajax
+      url: '/static_pages/show_entries'
+      data: {page:page,per_page:per_page}
+
+  
+  $('#more-items').bind "click", load_more
+
+  $('#more-items').bind "inview", (e, visible) ->
     if visible
-      $.getScript $(this).attr("href")
-      $(this).text('Loading..');
-
-  $("a.hook").bind "click", ->
-    $(this).text('Loading..');
-
+      $('.loading').show()
+      $(this).hide()
+      page = $(this).attr("data-page")
+      per_page = $(this).attr("data-ppage")
+      $.ajax
+        url: '/static_pages/show_entries'
+        data: {page:page,per_page:per_page}
 )
 
 init_masonry = ->

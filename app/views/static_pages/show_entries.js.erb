@@ -1,23 +1,20 @@
 <% if @entries.all.count>0 %>
-  $('#showcase-inner').append('<%= escape_javascript(render(partial: 'entries')) %>');
-  $('a.hook').attr('href', '<%= show_entries_path(page: (params[:page].to_i)+1, per_page: params[:per_page]) %>');
+  var page = <%=params[:page]%>
+  var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>");
+  $('#showcase-inner').append($boxes).masonry('appended', $boxes, true);
+  $('#showcase-inner').imagesLoaded(function(){
+    $('#showcase-inner').masonry( 'reload' );
+    twttr.widgets.load();
+    $boxes.css('visibility','visible');
+    $('.loading').hide();
+    $('a#more-items').attr({'data-page':page+1,'data-ppage':"<%=params[:per_page]%>"}).css('display','block').show();
+  });
+  if (Modernizr.touch){
+    if (!Modernizr.mq('only all and (max-width: 480px)')){
+      $('.ghost').css('visibility','visible');
+    }else
+      $('.box .zoom').removeAttr('href');   
+  } 
 <% else %>
-  $('a.hook').hide();
+  $('.loading').hide();
 <% end %>
-imageCount =0;
-$('.image img').load(function() {
-  imageCount++;
-  if(imageCount == '<%= @no_images%>'){
-    $('#showcase-inner').masonry('reload', function(){
-      $('a.hook').text('Load More');
-      twttr.widgets.load();
-      $('.box').css('visibility','visible');
-    });
-    if (Modernizr.touch){
-      if (!Modernizr.mq('only all and (max-width: 480px)')){
-        $('.ghost').css('visibility','visible');
-      }else
-        $('.box .zoom').removeAttr('href');   
-    } 
-  }
-});

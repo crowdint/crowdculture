@@ -128,6 +128,7 @@ ul.social li.btn-twitter {margin-right:6px;}
 .social-items iframe {float:right;width:85px !important;}
 .zoomit {width:73px;height:22px;background:url(/assets/sprite.png) no-repeat -127px -219px;position:absolute;float:right;}
 .ghost{visibility:hidden};
+.loading{background:url(/assets/loadingB.gif)no-repeat #90c855;background-position: center;height:48px;width:100%;}
 
 .vid{
   h1 {font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#fff;width:100%;display:block;}
@@ -144,7 +145,7 @@ ul.social li.btn-twitter {margin-right:6px;}
   .mask {top:-300px;left:-300px}
 }
 
-#more-items, #more-items:visited {padding:10px;font-size:15px;text-align:center;background:#282828;display:block;color: rgba(255, 255, 255, 0.5);text-transform:uppercase;text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.6);}
+#more-items, #more-items:visited {padding:16px;font-size:15px;text-align:center;background:#282828;color: rgba(255, 255, 255, 0.5);text-transform:uppercase;text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.6);display:none;}
 #more-items:hover {background:#436324;color:#fff;text-shadow:0px 1px 0px rgba(0, 0, 0, 0.3);}
 
 

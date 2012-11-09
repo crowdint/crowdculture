@@ -1,7 +1,12 @@
 language: ruby
 rvm:
   - "1.9.2"
+env:
+  - DB=sqlite
+  - DB=mysql
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate test
 before_script:
-  - cp config/database.yml.travis config/database.yml
-  - bundle exec rake db:create:all db:schema:load | tail
-script: bundle exec rspec spec
+  - mysql -e 'create database crowd-culture'
+  - psql -c 'create database crowd-culture' -U postgres
