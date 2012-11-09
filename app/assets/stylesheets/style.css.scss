@@ -82,11 +82,10 @@ footer#main-footer{padding:2px;}
 ul.social {position:absolute;top:9px;right:17px;list-style:none;width:60px;height:24px;}
 ul.social li {float:left;}
 ul.social li a {display:block;width:23px;height:23px;text-indent:-9999px;background:url(/assets/sprite.png) no-repeat 0px 0px;float:left;-webkit-border-radius:3px;-moz-border-radius:3px;-o-border-radius:3px;border-radius:3px;}
-ul.social li a:hover {-moz-box-shadow:0px 0px 10px #999;-moz-box-shadow:0px 0px 10px #999;-moz-box-shadow:0px 0px 10px #999;box-shadow:0px 0px 10px #999;}
 ul.social li.btn-twitter a {background-position:-31px -58px;}
-ul.social li.btn-twitter a:hover {background-position:-31px -83px;}
+ul.social li.btn-twitter a:hover {opacity:.5;}
 ul.social li.btn-facebook a {background-position:-5px -58px;}
-ul.social li.btn-facebook a:hover {background-position:-5px -83px;}
+ul.social li.btn-facebook a:hover {opacity:.5;}
 ul.social li.btn-twitter {margin-right:6px;}
 
 /* helper */
@@ -110,14 +109,13 @@ ul.social li.btn-twitter {margin-right:6px;}
 .box-inner img {max-width:100%;height:auto;margin:0;width:100%;}
 .no-touch .box:hover img {-webkit-transform: scale(1.4) rotate(9deg);-moz-transform:scale(1.4) rotate(9deg);transform: scale(1.4) rotate(9deg);-moz-opacity:0.6;-webkit-opacity:0.6;-o-opacity:0.6;opacity:0.6;}
 
-.image h1 {top:900px;left:0;position:absolute;font-size:20px;text-align:center;text-shadow:0px 0px 15px #7bc3c3;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
+.image h1 {top:900px;left:0;position:absolute;font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
 .quote h1 {font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#FFF;padding:2em 2%;width:96%;display:block;}
 
 .quote{width: 80px;}
 .quote a, .quote a:visited {color:#FFF;}
 
 .no-touch .image:hover h1 {top:40%;}
-.box h1:hover {text-shadow:0px 0px 15px #fff}
 .no-touch .box:hover .social-items {top:8px;}
 .no-touch .mask {width:1123px;height:1029px;background:url(/assets/trans3.png);position:absolute;top:105%;left:105%}
 .no-touch .box:hover .mask {top:-300px;left:-300px}

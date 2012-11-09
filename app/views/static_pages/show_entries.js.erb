@@ -3,11 +3,13 @@
   var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>");
   $('#showcase-inner').append($boxes).masonry('appended', $boxes, true);
   $('#showcase-inner').imagesLoaded(function(){
-    $('#showcase-inner').masonry( 'reload' );
-    twttr.widgets.load();
-    $boxes.css('visibility','visible');
+    $('#showcase-inner').masonry('reload', function(){
+      twttr.widgets.load();
+      $boxes.css('visibility','visible');
+    });
     $('.loading').hide();
     $('a#more-items').attr({'data-page':page+1,'data-ppage':"<%=params[:per_page]%>"}).css('display','block').show();
+    
   });
   if (Modernizr.touch){
     if (!Modernizr.mq('only all and (max-width: 480px)')){

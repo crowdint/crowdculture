@@ -1,0 +1,18 @@
+travis: &travis
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  host: 127.0.0.1
+  username: postgres
+
+development:
+  <<: *travis
+  database: crowd-culture_dev
+
+test:
+  <<: *travis
+  database: crowd-culture_test
+
+production:
+  <<: *travis
+  database: crowd-culture

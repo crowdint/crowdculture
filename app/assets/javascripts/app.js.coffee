@@ -109,7 +109,7 @@ init_masonry = ->
     $container.masonry
       itemSelector: ".box"
       gutterWidth: gutter
-      isAnimated: true
+      isAnimated: false
       columnWidth: (containerWidth) ->
         num_of_boxes = (containerWidth / min_width | 0)
         box_width = (((containerWidth - (num_of_boxes - 1) * gutter) / num_of_boxes) | 0)
