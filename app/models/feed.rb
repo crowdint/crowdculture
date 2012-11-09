@@ -97,7 +97,7 @@ class Feed < ActiveRecord::Base
         author = 1 #tumblr
       elsif entry.index('flickr') != nil
         author = 2 #flickr
-      elsif entry.index('amazonaws') != nil
+      elsif entry.index('distilleryimage') != nil
         author = 3 #instagram
       else
         author = 4 #tweeter

@@ -85,7 +85,6 @@ window.onload = (->
   $("a.hook").bind "click", ->
     $(this).text('Loading..');
 
-
 )
 
 init_masonry = ->
