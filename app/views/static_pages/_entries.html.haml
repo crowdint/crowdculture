@@ -4,11 +4,11 @@
     -when 'image'
       .box.image{:style => v}
         .box-inner
-          %img{:src => entry.img_url}/
+          %img{:src => entry.avatar.url(:medium)}/
           .mask
-            %a.zoom{:href => entry.img_url, :alt => entry.title, :rel => "gallery1"}
+            %a.zoom{:href => entry.avatar.url, :alt => entry.avatar.url, :rel => "gallery1"}
           %h1
-            %a.zoom{:href => entry.img_url, :alt => entry.title, :rel => "gallery2"}
+            %a.zoom{:href => entry.avatar.url, :alt => entry.title, :rel => "gallery2"}
               =entry.title
           .social-items
             .zoomit.ghost{href:'#'}

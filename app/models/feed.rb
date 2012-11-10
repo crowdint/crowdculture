@@ -36,17 +36,20 @@ class Feed < ActiveRecord::Base
       entries.each do |entry|
         author =  get_author(entry.entry_id)
         url_type = get_content_url(entry, author)
-        Entry.create(feed_id: author, img_url: url_type[0].to_s, published_date: entry.published, title: entry.title, entry_id:entry.entry_id, content_type: url_type[1])
+        Entry.create(feed_id: author, img_url: url_type[0].to_s, published_date: entry.published, 
+          title: entry.title, entry_id:entry.entry_id, content_type: url_type[1], avatar:url_type[2])
       end  
     end
 
     def get_content_url(entry, author)
+      avatar=nil
       a=[]
       url=''
       type=''
       if author == 1 #tumblr
         url = get_img_src(entry.summary)
         type = 'image' unless url.blank?
+        avatar = URI.parse(URI.encode(url.to_s)) unless url.blank?
         if url.blank?
           url = get_video_src(entry.summary)
           type = 'video'
@@ -61,8 +64,9 @@ class Feed < ActiveRecord::Base
       else
         url = get_img_src(entry.summary)
         type = 'image'
+        avatar = URI.parse(URI.encode(url.to_s)) unless url.blank?
       end
-      a=[url,type]
+      a=[url,type,avatar]
     end
 
     def check_for_news(entries, news)
@@ -89,7 +93,9 @@ class Feed < ActiveRecord::Base
     def get_video_src(entry)
       html = Nokogiri::HTML(entry)
       url = html.css('iframe/@src')
-      "http://player.vimeo.com/video/#{url.to_s[/\d+/]}"
+      if url.index('vimeo') != nil
+        "http://vimeo.com/#{url.to_s[/\d+/]}"
+      end
     end
 
     def get_author(entry)
