@@ -5,7 +5,8 @@ module StaticPagesHelper
   end
 
   def check_landscape(avatar)
-    geo = Paperclip::Geometry.from_file(avatar)
+    photo_path = (avatar.options[:storage] == :s3) ? avatar.url : avatar.path
+    geo ||= Paperclip::Geometry.from_file(photo_path)
     true if geo.width / geo.height > 1.8 
   end
 end
