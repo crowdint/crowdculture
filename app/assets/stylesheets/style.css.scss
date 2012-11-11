@@ -111,8 +111,6 @@ ul.social li.btn-twitter {margin-right:6px;}
 
 .image h1 {top:900px;left:0;position:absolute;font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
 .quote h1 {font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#FFF;padding:2em 2%;width:96%;display:block;}
-
-.quote{width: 80px;}
 .quote a, .quote a:visited {color:#FFF;}
 
 .no-touch .image:hover h1 {top:40%;}
@@ -180,7 +178,8 @@ ul.social li.btn-twitter {margin-right:6px;}
   aside#about h1.btn-close span {background-position:-30px -31px;}
   aside#about h1.btn-close:hover span, aside#about h1.btn-close span:hover  {background-position:-30px -4px;}
   aside#about p {text-shadow:none;color:#333;margin:10px 0;}
-  aside#about.active-mode a, aside#about.active-mode a:visited, aside#about.active-mode a:hover {color:#fff;}
+  aside#about.active-mode a, aside#about.active-mode a:visited{color:#fff;}
+  aside#about.active-mode a:hover{color:#e6eb70;}
 
 }   
 

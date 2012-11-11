@@ -1,0 +1,14 @@
+.box.vid{:style => "visibility:hidden; background-color:#{get_color};"}
+  .box-inner
+    .play
+    .mask
+      %a.video{:href => entry.img_url, target: '_blank'}
+    %h1
+      %a.video{href: entry.img_url, target:'_blank'}
+        =entry.title
+    %p
+      %a.video{href: entry.img_url, target:'_blank'}
+        Watch video
+    .social-items
+      .zoomit.ghost{href:'#'}
+      %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-counturl"=>entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet

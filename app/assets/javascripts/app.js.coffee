@@ -112,9 +112,10 @@ init_masonry = ->
       isAnimated: false
       columnWidth: (containerWidth) ->
         num_of_boxes = (containerWidth / min_width | 0)
-        box_width = (((containerWidth - (num_of_boxes - 1) * gutter) / num_of_boxes) | 0)
+        box_width = ((containerWidth  / num_of_boxes) | 0)
         box_width = containerWidth  if containerWidth < min_width
         $(".box").width box_width
+        $(".landscape").width box_width * 2 if num_of_boxes > 1
         box_width
 
 

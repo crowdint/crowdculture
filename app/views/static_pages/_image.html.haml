@@ -1,0 +1,12 @@
+- l = check_landscape(entry.avatar)
+.box.image{:style => "visibility:hidden", class: l == true ? "landscape" : ""}
+  .box-inner
+    %img{:src => l == true ? entry.avatar.url : entry.avatar.url(:medium)}/
+    .mask
+      %a.zoom{:href => entry.avatar.url, :alt => entry.title, :rel => "gallery1"}
+    %h1
+      %a.zoom{:href => entry.avatar.url, :alt => entry.title, :rel => "gallery2"}
+        =entry.title
+    .social-items
+      .zoomit.ghost{href:'#'}
+      %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet

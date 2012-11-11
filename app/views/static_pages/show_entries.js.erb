@@ -8,8 +8,7 @@
       $boxes.css('visibility','visible');
     });
     $('.loading').hide();
-    $('a#more-items').attr({'data-page':page+1,'data-ppage':"<%=params[:per_page]%>"}).css('display','block').show();
-    
+    $('a#more-items').attr({'data-page':page+1,'data-ppage':"<%=params[:per_page]%>"}).css('display','block').show(); 
   });
   if (Modernizr.touch){
     if (!Modernizr.mq('only all and (max-width: 480px)')){

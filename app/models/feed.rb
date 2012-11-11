@@ -37,7 +37,7 @@ class Feed < ActiveRecord::Base
         author =  get_author(entry.entry_id)
         url_type = get_content_url(entry, author)
         Entry.create(feed_id: author, img_url: url_type[0].to_s, published_date: entry.published, 
-          title: entry.title, entry_id:entry.entry_id, content_type: url_type[1], avatar:url_type[2])
+          title: entry.title[10..-1], entry_id:entry.entry_id, content_type: url_type[1], avatar:url_type[2])
       end  
     end
 
@@ -61,6 +61,7 @@ class Feed < ActiveRecord::Base
         type = 'quote' unless !url.blank?
       elsif author == 4 #tweeter
         type = 'tweet'
+        url = entry.url
       else
         url = get_img_src(entry.summary)
         type = 'image'
