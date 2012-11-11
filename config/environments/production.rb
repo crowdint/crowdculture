@@ -75,7 +75,7 @@ CrowdCulture::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
-  Paperclip.options[:command_path] = "/usr/local/bin"
+  Paperclip::Attachment.default_options[:command_path] = "/usr/local/bin"
 
   # Google Analytics code
   config.middleware.use Rack::GoogleAnalytics, tracker: ENV['GA_CODE'] if ENV['GA_CODE'].present?
