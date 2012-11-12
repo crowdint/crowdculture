@@ -111,7 +111,7 @@ ul.social li.btn-twitter {margin-right:6px;}
 
 .image h1 {top:900px;left:0;position:absolute;font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
 .quote h1 {font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#FFF;padding:2em 2%;width:96%;display:block;}
-.quote a, .quote a:visited {color:#FFF;}
+.quote a, .quote a:visited {color:#FFF;&:hover{text-decoration:underline;}}
 
 .no-touch .image:hover h1 {top:40%;}
 .no-touch .box:hover .social-items {top:8px;}
@@ -122,13 +122,14 @@ ul.social li.btn-twitter {margin-right:6px;}
 .mask a {width:100%;height:100%;;display:block;text-indent:-9999px;}
 .social-items {list-style:none;position:absolute;top:-30px;right:0;width:100%;}
 .social-items iframe {float:right;width:85px !important;}
+.twitter-share-button{background:#209adb;float:right;padding:4px;color:#fff!important;width:35px;}
 .zoomit {width:73px;height:22px;background:url(/assets/sprite.png) no-repeat -127px -219px;position:absolute;float:right;}
 .ghost{visibility:hidden};
 .loading{background:url(/assets/loadingB.gif)no-repeat #90c855;background-position: center;height:48px;width:100%;}
 
 .vid{
   h1 {font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#fff;width:100%;display:block;}
-  a{color:#e6eb70;font-size:22px;}
+  p a{color:#e6eb70;font-size:22px;}
   p{position:absolute;top:-30px;right:0;text-align:center;display: block;width: 100%;text-transform:uppercase;}
   &:hover {p{top:80px;}}
   .play{background-image:url(/assets/watch-it.png);background-repeat: no-repeat;background-position: center; width:100%; height:160px;}

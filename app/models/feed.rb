@@ -36,8 +36,9 @@ class Feed < ActiveRecord::Base
       entries.each do |entry|
         author =  get_author(entry.entry_id)
         url_type = get_content_url(entry, author)
-        Entry.create(feed_id: author, img_url: url_type[0].to_s, published_date: entry.published, 
+        item = Entry.create(feed_id: author, img_url: url_type[0].to_s, published_date: entry.published, 
           title: entry.title[10..-1], entry_id:entry.entry_id, content_type: url_type[1], avatar:url_type[2])
+        check_size(item)
       end  
     end
 
@@ -110,6 +111,15 @@ class Feed < ActiveRecord::Base
         author = 4 #tweeter
       end
       author
+    end
+
+    def check_size(entry)
+      avatar = entry.avatar
+      photo_path = (avatar.options[:storage] == :s3) ? avatar.url : avatar.path
+      geo ||= Paperclip::Geometry.from_file(photo_path)
+      if geo.width / geo.height > 1.8 
+        entry.update_attribute(:box_size, 2)
+      end
     end
   end
 

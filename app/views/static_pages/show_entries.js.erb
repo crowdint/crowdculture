@@ -4,7 +4,6 @@
   $('#showcase-inner').append($boxes).masonry('appended', $boxes, true);
   $('#showcase-inner').imagesLoaded(function(){
     $('#showcase-inner').masonry('reload', function(){
-      twttr.widgets.load();
       $boxes.css('visibility','visible');
     });
     $('.loading').hide();

@@ -1,4 +1,31 @@
 $(document).ready ->
+
+  $('body').delegate ".twitter-share-button", "click", (e) ->
+    e.preventDefault()
+    API_URL = "http://cdn.api.twitter.com/1/urls/count.json"
+    TWEET_URL = "https://twitter.com/intent/tweet";
+    elem = $(this)
+
+    url = encodeURIComponent(elem.attr("data-url") || document.location.href)
+
+    text = elem.attr("data-text") || document.title
+    via = elem.attr("data-via") || ""
+    related = encodeURIComponent(elem.attr("data-related")) || ""
+    href= TWEET_URL + "?&original_referer=" + encodeURIComponent(document.location.href) + "&source=tweetbutton&text=" + text + "&url=" + url + "&via=" + via
+    popup(href, elem)
+    $.getJSON API_URL + "?callback=?&url=" + url, (data) ->
+      elem.html data.count  
+
+  popup = (href, elem) ->
+    width = 550
+    height = 250
+    left = ($(window).width() - width) / 2
+    top = ($(window).height() - height) / 2
+    url = href
+    opts = "status=1" + ",width=" + width + ",height=" + height + ",top=" + top + ",left=" + left
+    window.open url, "twitter", opts
+    false
+
   get_entries_per_page = ->
     per_page = 0
     if Modernizr.mq('only all and (max-width: 480px)') 
@@ -109,13 +136,16 @@ init_masonry = ->
     $container.masonry
       itemSelector: ".box"
       gutterWidth: gutter
-      isAnimated: false
+      isAnimated: true
       columnWidth: (containerWidth) ->
         num_of_boxes = (containerWidth / min_width | 0)
         box_width = ((containerWidth  / num_of_boxes) | 0)
         box_width = containerWidth  if containerWidth < min_width
         $(".box").width box_width
-        $(".landscape").width box_width * 2 if num_of_boxes > 1
+        $(".col2").width box_width * 2 if num_of_boxes > 1
+        $(".col3").width (if (num_of_boxes > 1) then box_width * 3 else box_width * num_of_boxes)
+        $(".col4").width (if (num_of_boxes > 1) then box_width * 4 else box_width * num_of_boxes)
+        $(".col5").width (if (num_of_boxes > 1) then box_width * 5 else box_width * num_of_boxes)
         box_width
 
 

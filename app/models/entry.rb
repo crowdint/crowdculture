@@ -13,7 +13,7 @@
 #
 
 class Entry < ActiveRecord::Base
-  attr_accessible :feed_id, :img_url, :published_date, :title, :entry_id, :content_type, :avatar
+  attr_accessible :feed_id, :img_url, :published_date, :title, :entry_id, :content_type, :avatar, :box_size
   belongs_to :feed
   validates :entry_id, presence: true, uniqueness: { case_sensitive: false }
   validates :feed_id, :published_date, :title, :content_type, presence: true

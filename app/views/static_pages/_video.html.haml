@@ -1,4 +1,5 @@
-.box.vid{:style => "visibility:hidden; background-color:#{get_color};"}
+- s = entry.box_size
+.box.vid{:style => "visibility:hidden; background-color:#{get_color};", class: "col#{s}"}
   .box-inner
     .play
     .mask
@@ -9,6 +10,4 @@
     %p
       %a.video{href: entry.img_url, target:'_blank'}
         Watch video
-    .social-items
-      .zoomit.ghost{href:'#'}
-      %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-counturl"=>entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
+    = render 'social', entry: entry

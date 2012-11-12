@@ -1,8 +1,7 @@
-.box.quote{:style => "visibility:hidden; background:#{get_color};"}
+- s = entry.box_size
+.box.quote{:style => "visibility:hidden; background:#{get_color};", class: "col#{s}"}
   .box-inner
     %h1
       %a{href: entry.img_url, target: '_blank'}
         =entry.title
-    .social-items
-      .zoomit.ghost{href:'#'}
-      %a.twitter-share-button{"data-lang" => "en", "data-text" => entry.title, "data-url" => entry.img_url, "data-via" => "crowdint", :href => "https://twitter.com/share"} Tweet
+    = render 'social', entry: entry
