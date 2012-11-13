@@ -44,7 +44,8 @@ namespace :entries do
           entry_id:"http://culture.crowdint.com/post/30332202764", 
           img_url:"http://25.media.tumblr.com/tumblr_m9fj869FAW1qj2zw8o1_r2_1280.jpg", 
           content_type:"image", 
-          avatar:avatar)
+          avatar:avatar,
+          box_size:2)
     
      avatar = URI.parse(URI.encode("http://24.media.tumblr.com/tumblr_m9fcyhYQ1Z1qj2zw8o1_1280.jpg".to_s))
      Entry.create(title:"awesome dinner at Espetus, San Francisco, CA.", 
@@ -339,7 +340,8 @@ namespace :entries do
            entry_id:"http://culture.crowdint.com/post/20015402295", 
            img_url:"http://25.media.tumblr.com/tumblr_m1k27pZYYs1qj2zw8o1_1280.png", 
            content_type:"image", 
-           avatar:avatar)
+           avatar:avatar,
+           box_size:2)
 
      avatar = URI.parse(URI.encode("http://24.media.tumblr.com/tumblr_lps30viYRA1qj2zw8o1_1280.jpg".to_s))
      Entry.create(title:"Let's get this party started #Crowdint we have @magmarails goodies!", 

@@ -30,16 +30,25 @@ class Feed < ActiveRecord::Base
         news = check_for_news(entries ,news)
       end
       add_news(news)
+      Entry.check_size(news.count)
     end
 
     def add_news(entries)
       entries.each do |entry|
         author =  get_author(entry.entry_id)
+        title = get_title(entry, author)
         url_type = get_content_url(entry, author)
         item = Entry.create(feed_id: author, img_url: url_type[0].to_s, published_date: entry.published, 
-          title: entry.title[10..-1], entry_id:entry.entry_id, content_type: url_type[1], avatar:url_type[2])
-        check_size(item)
-      end  
+          title: title, entry_id:entry.entry_id, content_type: url_type[1], avatar:url_type[2])
+      end
+    end
+
+    def get_title(entry, author)
+      if author != 4
+        entry.title
+      else
+        entry.title[10..-1]
+      end
     end
 
     def get_content_url(entry, author)
@@ -60,7 +69,7 @@ class Feed < ActiveRecord::Base
           type = 'link'
         end
         type = 'quote' unless !url.blank?
-      elsif author == 4 #tweeter
+      elsif author == 4 #twitter
         type = 'tweet'
         url = entry.url
       else
@@ -108,18 +117,9 @@ class Feed < ActiveRecord::Base
       elsif entry.index('distilleryimage') != nil
         author = 3 #instagram
       else
-        author = 4 #tweeter
+        author = 4 #twitter
       end
       author
-    end
-
-    def check_size(entry)
-      avatar = entry.avatar
-      photo_path = (avatar.options[:storage] == :s3) ? avatar.url : avatar.path
-      geo ||= Paperclip::Geometry.from_file(photo_path)
-      if geo.width / geo.height > 1.8 
-        entry.update_attribute(:box_size, 2)
-      end
     end
   end
 
