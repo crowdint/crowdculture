@@ -44,10 +44,14 @@ class Feed < ActiveRecord::Base
     end
 
     def get_title(entry, author)
-      if author != 4
-        entry.title
-      else
+      case author
+      when 4
         entry.title[10..-1]
+      when 2
+        entry.title
+      default
+        doc = Nokogiri::HTML(entry.summary)
+        doc.xpath("//text()").to_s
       end
     end
 
