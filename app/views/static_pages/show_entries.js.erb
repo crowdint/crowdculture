@@ -1,14 +1,13 @@
 <% if @entries.all.count>0 %>
   var page = <%=params[:page]%>
   var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>");
-  if (page == 1) $('#showcase-inner').empty();
   $('#showcase-inner').append($boxes).masonry('appended', $boxes, true);
   $('#showcase-inner').imagesLoaded(function(){
     $('#showcase-inner').masonry('reload', function(){
       $boxes.css('visibility','visible');
-    });
-    $('.loading').hide();
-    $('a#more-items').attr({'data-page':page+1,'data-ppage':"<%=params[:per_page]%>"}).css('display','block').show(); 
+      $('.loading').hide();
+    $('a#more-items').attr({'data-page':page+1,'data-ppage':"<%=params[:per_page]%>"}).css('display','block').show();
+    }); 
   });
   if (Modernizr.touch){
     if (!Modernizr.mq('only all and (max-width: 480px)')){

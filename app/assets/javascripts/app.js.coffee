@@ -55,6 +55,10 @@ $(document).ready ->
   $('#feed_select').change (e) ->
     page = 1
     feed = this.value
+    $('#showcase-inner').empty();
+    $('#more-items').hide()
+    $('.loading').show()
+
     show_entries()
 
   if Modernizr.touch                                    #if touchscreen
