@@ -1,5 +1,8 @@
+per_page = 0
+feed = 0
+page = 1
 $(document).ready ->
-
+  
   $('body').delegate ".twitter-share-button", "click", (e) ->
     e.preventDefault()
     API_URL = "http://cdn.api.twitter.com/1/urls/count.json"
@@ -39,14 +42,20 @@ $(document).ready ->
     else if Modernizr.mq('only all and (max-width: 2560px)') 
       per_page = 35
     else per_page = 10
-    show_entries(per_page)
+    show_entries()
 
-  show_entries = (per_page) ->
+  show_entries = () ->
     $.ajax
       url: '/static_pages/show_entries'
-      data: {page:1,per_page:per_page}
+      data: {page:page,per_page:per_page,feed:feed}
+    page += 1
 
   get_entries_per_page()
+
+  $('#feed_select').change (e) ->
+    page = 1
+    feed = this.value
+    show_entries()
 
   if Modernizr.touch                                    #if touchscreen
     if Modernizr.mq('only all and (max-width: 480px)')  #touchscreen w/small screen
@@ -104,28 +113,22 @@ $(document).ready ->
       $("#helper").slideUp 100
 
 window.onload = (->
-  load_more = (e) ->
-    e.preventDefault()
-    $('.loading').show()
-    $(this).hide()
-    page = $(this).attr("data-page")
-    per_page = $(this).attr("data-ppage")
-    $.ajax
-      url: '/static_pages/show_entries'
-      data: {page:page,per_page:per_page}
-
   
-  $('#more-items').bind "click", load_more
+  $('#more-items').bind "click", (e) ->
+    e.preventDefault()
+    load_more()
 
   $('#more-items').bind "inview", (e, visible) ->
     if visible
-      $('.loading').show()
-      $(this).hide()
-      page = $(this).attr("data-page")
-      per_page = $(this).attr("data-ppage")
-      $.ajax
-        url: '/static_pages/show_entries'
-        data: {page:page,per_page:per_page}
+      load_more()
+
+  load_more = () ->
+    $('#more-items').hide()
+    $('.loading').show()
+    $.ajax
+      url: '/static_pages/show_entries'
+      data: {page:page,per_page:per_page,feed:feed}
+    page += 1
 )
 
 init_masonry = ->

@@ -93,10 +93,11 @@ aside#about {
 }
 
 footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', trebuchet, arial, sans-serif;padding:15px;overflow:hidden;background:url(/assets/trans.png);text-shadow:1px 1px 0px rgba(0,0,0,0.3);position:relative;clear:both;}
-ul.social {
-  position:absolute;top:9px;right:17px;list-style:none;width:60px;height:24px;
-  li {float:left;
-    a {display:block;width:23px;height:23px;text-indent:-9999px;background:url(/assets/sprite.png) no-repeat 0px 0px;float:left;-webkit-border-radius:3px;-moz-border-radius:3px;-o-border-radius:3px;border-radius:3px;}
+  #feed_select{position:absolute;top:9px;left:17px;list-style:none;width:90px;height:24px;}
+  ul.social {
+    position:absolute;top:9px;right:17px;list-style:none;width:60px;height:24px;
+    li {float:left;
+      a {display:block;width:23px;height:23px;text-indent:-9999px;background:url(/assets/sprite.png) no-repeat 0px 0px;float:left;-webkit-border-radius:3px;-moz-border-radius:3px;-o-border-radius:3px;border-radius:3px;}
   }
   li.btn-twitter{
      margin-right:6px;
@@ -207,6 +208,7 @@ footer#main-footer{padding:2px;}
       li {display:inline-block;float:none;}
       li.btn-twitter {margin-right:0;}
     }
+    select#feed_select{position:relative;width:auto;padding:0;text-align:center;top:auto;right:auto;bottom:auto;display:inline-block;margin-top: 5px;margin-left: -34px}
   }
 
   header {padding:12px 0px;}

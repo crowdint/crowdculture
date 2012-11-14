@@ -1,6 +1,7 @@
 <% if @entries.all.count>0 %>
   var page = <%=params[:page]%>
   var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>");
+  if (page == 1) $('#showcase-inner').empty();
   $('#showcase-inner').append($boxes).masonry('appended', $boxes, true);
   $('#showcase-inner').imagesLoaded(function(){
     $('#showcase-inner').masonry('reload', function(){
