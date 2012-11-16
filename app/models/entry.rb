@@ -32,16 +32,22 @@ class Entry < ActiveRecord::Base
           author =  get_author(entry.entry_id)
           title = get_title(entry, author)
           url_type = get_content_url(entry, author)
-          item = Entry.create(feed_id: author, img_url: url_type[0].to_s, published_date: entry.published, 
-            title: title, entry_id:entry.entry_id, content_type: url_type[1], avatar:url_type[2])
+          url_type[1] == 'image' ? avatar = get_avatar(url_type[0]) : avatar = nil
+          item = Entry.create(feed_id: author,  
+                              published_date: entry.published, 
+                              title: title, 
+                              entry_id: entry.entry_id,
+                              img_url: url_type[0].to_s,
+                              content_type: url_type[1],
+                              avatar: avatar)
         end
       end
 
       def get_title(entry, author)
         case author
-        when 4
+        when 4 #twitter
           entry.title[10..-1]
-        when 1
+        when 1 #tumblr
           doc = Nokogiri::HTML(entry.summary)
           doc.xpath("//text()").to_s
         else
@@ -49,36 +55,31 @@ class Entry < ActiveRecord::Base
         end
       end
 
-      def get_content_url(entry, author)
-        avatar=nil
-        a=[]
-        url=''
-        type=''
+      def get_content_url(entry, author) #returns array
         if author == 1 #tumblr
-          url = get_img_src(entry.summary)
-          type = 'image' unless url.blank?
-          avatar = URI.parse(URI.encode(url.to_s)) unless url.blank?
-          if url.blank?
-            url = get_video_src(entry.summary)
-            type = 'video'
-          end
-          if url.blank?
-            url = get_link_href(entry.summary)
-            type = 'link'
-          end
-          type = 'quote' unless !url.blank?
+          get_tumblr_content(entry.summary)
         elsif author == 4 #twitter
-          type = 'tweet'
-          url = entry.url
+          [entry.url, 'tweet']
         else
-          url = get_img_src(entry.summary)
-          type = 'image'
-          avatar = URI.parse(URI.encode(url.to_s)) unless url.blank?
+          [get_img_src(entry.summary), 'image']
         end
-        a=[url,type,avatar]
       end
 
+      def get_tumblr_content(summary) #returns array
+        if !get_img_src(summary).blank?
+          [get_img_src(summary), 'image']
+        elsif !get_video_src(summary).blank?
+          [get_video_src(summary), 'video']
+        elsif !get_link_href(summary).blank?
+          [get_link_href(summary), 'link']
+        else
+          ['', 'quote']
+        end
+      end
       
+      def get_avatar(img_url)
+        avatar = URI.parse(URI.encode(img_url.to_s))
+      end
 
       def get_img_src(entry)
         html = Nokogiri::HTML(entry)

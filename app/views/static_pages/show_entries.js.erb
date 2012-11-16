@@ -6,7 +6,7 @@
     $('#showcase-inner').masonry('reload', function(){
       $boxes.css('visibility','visible');
       $('.loading').hide();
-    $('a#more-items').attr({'data-page':page+1,'data-ppage':"<%=params[:per_page]%>"}).css('display','block').show();
+    $('a#more-items').show();
     }); 
   });
   if (Modernizr.touch){
