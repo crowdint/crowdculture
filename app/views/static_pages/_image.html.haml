@@ -1,5 +1,5 @@
 - s = entry.box_size
-.box.image{:style => "visibility:hidden", class: "col#{s}"}
+.box.image{class: "col#{s}"}
   .box-inner
     %img{:src => s > 1 ? entry.avatar.url : entry.avatar.url(:medium)}/
     .mask

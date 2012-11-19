@@ -55,10 +55,10 @@ $(document).ready ->
   $('#feed_select').change (e) ->
     page = 1
     feed = this.value
-    $('#showcase-inner').empty();
+    $('#showcase-inner').children().remove()
+    $('#showcase-inner').height(0);
     $('#more-items').hide()
     $('.loading').show()
-
     show_entries()
 
   if Modernizr.touch                                    #if touchscreen
@@ -151,8 +151,6 @@ init_masonry = ->
         $(".box").width box_width
         $(".col2").width box_width * 2 if num_of_boxes > 1
         $(".col3").width (if (num_of_boxes > 1) then box_width * 3 else box_width * num_of_boxes)
-        $(".col4").width (if (num_of_boxes > 1) then box_width * 4 else box_width * num_of_boxes)
-        $(".col5").width (if (num_of_boxes > 1) then box_width * 5 else box_width * num_of_boxes)
         box_width
 
 

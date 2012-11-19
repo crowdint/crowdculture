@@ -112,17 +112,21 @@ class Entry < ActiveRecord::Base
         author
       end
 
-      def check_size(n)
-        entries = Entry.find(:all, :order => "id desc", :limit => n)
+      def check_news_box_size(news)
+        entries = Entry.find(:all, :order => "id desc", :limit => news)
         entries.each do |entry|
           if entry.avatar_file_name != nil
             avatar = entry.avatar
-            photo_path = (avatar.options[:storage] == :s3) ? avatar.url : avatar.path
-            geo ||= Paperclip::Geometry.from_file(photo_path)
-            if geo.width / geo.height > 1.8 
-              entry.update_attribute(:box_size, 2)
-            end
+            get_size(avatar)
           end
+        end
+      end
+
+      def get_size(avatar)
+        photo_path = (avatar.options[:storage] == :s3) ? avatar.url : avatar.path
+        geo ||= Paperclip::Geometry.from_file(photo_path)
+        if geo.width / geo.height > 1.8 
+          entry.update_attribute(:box_size, 2)
         end
       end
     end

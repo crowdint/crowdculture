@@ -35,7 +35,7 @@ table {border-collapse: collapse;border-spacing: 0;}
 /********** custom reset ***********/
 
 p, ul, small, ol, li, h1, h2, h3, h4, h5, h6, blockquote, a, div, span {-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
-img {-ms-interpolation-mode: bicubic;}
+
 input[type="submit"], input[type="button"], label {cursor:pointer;}
 textarea{resize:none}
 .clearer {clear:both}
@@ -163,7 +163,7 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
   &:hover{
     background:#ddd;
   }
-  .tweet-share{width:23px;height:90px;background:#fff;display:block;float:left;}
+  .tweet-share{width:23px;height:90px;background:#fff;float:left;}
   .comment{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -56px;display:block;&:hover{background-position:-209px -56px;}}
   .retweet{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -81px;display:block;&:hover{background-position:-209px -81px;}}
   .favorite{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -101px;display:block;&:hover{background-position:-209px -101px;}}

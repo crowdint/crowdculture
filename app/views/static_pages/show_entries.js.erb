@@ -1,14 +1,26 @@
+container = $('#showcase-inner');
+function show_entries(){
+  $boxes.animate({opacity: 1});
+  $('.loading').hide();
+  $('a#more-items').show();
+}
 <% if @entries.all.count>0 %>
   var page = <%=params[:page]%>
-  var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>");
-  $('#showcase-inner').append($boxes).masonry('appended', $boxes, true);
-  $('#showcase-inner').imagesLoaded(function(){
-    $('#showcase-inner').masonry('reload', function(){
-      $boxes.css('visibility','visible');
-      $('.loading').hide();
-    $('a#more-items').show();
-    }); 
-  });
+  var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>").css('opacity', '0');;
+  if ($boxes.find('img').length > 0){
+    container.append($boxes).masonry('appended', $boxes, true);
+    container.imagesLoaded(function(){
+      container.masonry('reload', function(){
+        show_entries();
+      }); 
+    });
+  }else{
+    container.append($boxes).masonry('appended', $boxes, true, function(){
+      show_entries();
+      container.masonry('reload');
+    });   
+  }
+  
   if (Modernizr.touch){
     if (!Modernizr.mq('only all and (max-width: 480px)')){
       $('.ghost').css('visibility','visible');
