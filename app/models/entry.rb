@@ -46,24 +46,14 @@ class Entry < ActiveRecord::Base
           author =  get_author(entry.entry_id)
           title = get_title(entry, author)
           url_type = get_content_url(entry, author)
-          if url_type[1] == 'Image'
-            avatar = get_avatar(url_type[0])
-            item = Image.create(feed_id: author,  
-                              published_date: entry.published, 
-                              title: title, 
-                              entry_id: entry.entry_id,
-                              content_url: url_type[0].to_s,
-                              type: url_type[1].constantize.to_s,
-                              avatar: avatar)
-          else
-            item = Entry.create(feed_id: author,  
-                                published_date: entry.published, 
-                                title: title, 
-                                entry_id: entry.entry_id,
-                                content_url: url_type[0].to_s,
-                                type: url_type[1].constantize.to_s,
-                                avatar: nil)
-          end
+          url_type[1] == 'Image' ? avatar = get_avatar(url_type[0]) : avatar = nil
+          url_type[1].constantize.create(feed_id: author,  
+                                          published_date: entry.published, 
+                                          title: title, 
+                                          entry_id: entry.entry_id,
+                                          content_url: url_type[0].to_s,
+                                          type: url_type[1].constantize.to_s,
+                                          avatar: avatar)
         end
       end
 
@@ -136,22 +126,5 @@ class Entry < ActiveRecord::Base
         author
       end
 
-      def check_news_box_size(news)
-        entries = Entry.find(:all, :order => "id desc", :limit => news)
-        entries.each do |entry|
-          if entry.avatar_file_name != nil
-            get_size(entry)
-          end
-        end
-      end
-
-      def get_size(entry)
-        avatar = entry.avatar
-        photo_path = (avatar.options[:storage] == :s3) ? avatar.url : avatar.path
-        geo ||= Paperclip::Geometry.from_file(photo_path)
-        if geo.width / geo.height > 1.8 
-          entry.update_attribute(:box_size, 2)
-        end
-      end
     end
 end

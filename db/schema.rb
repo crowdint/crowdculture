@@ -11,19 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121119161458) do
-
-  create_table "employees", :force => true do |t|
-    t.string   "name"
-    t.string   "rol"
-    t.string   "twitter"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20121119160521) do
 
   create_table "entries", :force => true do |t|
     t.integer  "feed_id"

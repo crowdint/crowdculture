@@ -22,7 +22,7 @@ class Feed < ActiveRecord::Base
       news = get_news(feeds)
       if !news.blank?
         Entry.add_news(news)
-        Entry.check_news_box_size(news.count)
+        Image.check_news_box_size(news.count)
       end
     end
 

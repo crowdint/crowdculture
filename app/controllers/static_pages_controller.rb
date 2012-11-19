@@ -5,14 +5,9 @@ class StaticPagesController < ApplicationController
   end
 
   def show_entries
-    case params[:feed].to_i
-    when 5
-      @entries = get_employees(params[:page], params[:per_page])
-    when 0
-      @entries = all_feeds(params[:page], params[:per_page])
-    else
-      @entries = filtered_feed(params[:feed], params[:page], params[:per_page])
-    end
+    params[:feed].to_i == 0 ? 
+    @entries = all_feeds(params[:page], params[:per_page]) : 
+    @entries = filtered_feed(params[:feed], params[:page], params[:per_page])
     respond_with(@entries)
   end
 
@@ -23,10 +18,6 @@ class StaticPagesController < ApplicationController
 
       def filtered_feed(feed, page, per_page)
         Entry.scoped.where(:feed_id=>feed.to_i).paginate(:page => page, :per_page => per_page)
-      end
-
-      def get_employees(page, per_page)
-        Employee.scoped.paginate(:page => page, :per_page => per_page)
       end
   
 end

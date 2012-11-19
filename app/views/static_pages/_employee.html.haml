@@ -1,8 +1,12 @@
-.box.image
+.box.employee
   .box-inner
     %img{:src => entry.avatar.url(:medium)}
     .mask
       %a{:href => "https://twitter.com/crowdint", target: "_blank"}
     %h1
+      =entry.entry_id
+    %p.role
+      =entry.title
+    %p.twt
       %a{:href => "https://twitter.com/crowdint", target: "_blank"}
-        =entry.title
+        =entry.content_url

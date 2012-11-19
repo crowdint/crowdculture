@@ -192,6 +192,13 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
   .social-items {top:8px;}
   .mask {top:-300px;left:-300px}
 }
+.employee{
+  h1{top:900px;left:0;position:absolute;font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
+  &:hover h1{top:30%;};
+  &:hover p.role {top:60%;};
+  &:hover p.twt {top:80%;};
+  p.role, p.twt{top:900px;left:0;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
+}
 
 /* footer  **********************************************/
 footer#main-footer{padding:2px;}
