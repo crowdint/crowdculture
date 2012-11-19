@@ -2,9 +2,9 @@
   .box-inner
     %div
     .tweet-share
-      %a.comment{href:entry.img_url}
-      %a.retweet{href:entry.img_url}
-      %a.favorite{href:entry.img_url}
+      %a.comment{href:entry.content_url}
+      %a.retweet{href:entry.content_url}
+      %a.favorite{href:entry.content_url}
     %h1
-      %a{href: entry.img_url, target:'_blank'}
+      %a{href: entry.content_url, target:'_blank'}
         =entry.title

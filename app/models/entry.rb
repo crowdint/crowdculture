@@ -13,10 +13,14 @@
 #
 
 class Entry < ActiveRecord::Base
-  attr_accessible :feed_id, :img_url, :published_date, :title, :entry_id, :content_type, :avatar, :box_size
+  attr_accessible :feed_id, :content_url, :published_date, :title, :entry_id, :type, :avatar, :box_size
   belongs_to :feed
   validates :entry_id, presence: true, uniqueness: { case_sensitive: false }
-  validates :feed_id, :published_date, :title, :content_type, presence: true
+  validates :feed_id, :published_date, :type, presence: true
+  
+  validate do |entry|
+    entry.errors[:type] << "must be a valid subclass of Entry" unless Entry.descendants.map{|klass| klass.name}.include?(entry.type)
+  end
 
   default_scope order: 'entries.published_date DESC'
 
@@ -27,19 +31,39 @@ class Entry < ActiveRecord::Base
   }
 
     class << self
+      def inherited(child)
+        child.instance_eval do
+          alias :original_model_name :model_name
+          def model_name
+            Entry.model_name
+          end
+        end
+        super
+      end
+
       def add_news(entries)
         entries.each do |entry|
           author =  get_author(entry.entry_id)
           title = get_title(entry, author)
           url_type = get_content_url(entry, author)
-          url_type[1] == 'image' ? avatar = get_avatar(url_type[0]) : avatar = nil
-          item = Entry.create(feed_id: author,  
+          if url_type[1] == 'Image'
+            avatar = get_avatar(url_type[0])
+            item = Image.create(feed_id: author,  
                               published_date: entry.published, 
                               title: title, 
                               entry_id: entry.entry_id,
-                              img_url: url_type[0].to_s,
-                              content_type: url_type[1],
+                              content_url: url_type[0].to_s,
+                              type: url_type[1].constantize.to_s,
                               avatar: avatar)
+          else
+            item = Entry.create(feed_id: author,  
+                                published_date: entry.published, 
+                                title: title, 
+                                entry_id: entry.entry_id,
+                                content_url: url_type[0].to_s,
+                                type: url_type[1].constantize.to_s,
+                                avatar: nil)
+          end
         end
       end
 
@@ -59,21 +83,21 @@ class Entry < ActiveRecord::Base
         if author == 1 #tumblr
           get_tumblr_content(entry.summary)
         elsif author == 4 #twitter
-          [entry.url, 'tweet']
+          [entry.url, 'Tweet']
         else
-          [get_img_src(entry.summary), 'image']
+          [get_img_src(entry.summary), 'Image']
         end
       end
 
       def get_tumblr_content(summary) #returns array
         if !get_img_src(summary).blank?
-          [get_img_src(summary), 'image']
+          [get_img_src(summary), 'Image']
         elsif !get_video_src(summary).blank?
-          [get_video_src(summary), 'video']
+          [get_video_src(summary), 'Video']
         elsif !get_link_href(summary).blank?
-          [get_link_href(summary), 'link']
+          [get_link_href(summary), 'Link']
         else
-          ['', 'quote']
+          ['', 'Quote']
         end
       end
       
@@ -116,13 +140,13 @@ class Entry < ActiveRecord::Base
         entries = Entry.find(:all, :order => "id desc", :limit => news)
         entries.each do |entry|
           if entry.avatar_file_name != nil
-            avatar = entry.avatar
-            get_size(avatar)
+            get_size(entry)
           end
         end
       end
 
-      def get_size(avatar)
+      def get_size(entry)
+        avatar = entry.avatar
         photo_path = (avatar.options[:storage] == :s3) ? avatar.url : avatar.path
         geo ||= Paperclip::Geometry.from_file(photo_path)
         if geo.width / geo.height > 1.8 

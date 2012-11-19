@@ -3,11 +3,11 @@
   .box-inner
     .play
     .mask
-      %a.video{:href => entry.img_url, target: '_blank'}
+      %a.video{:href => entry.content_url, target: '_blank'}
     %h1
-      %a.video{href: entry.img_url, target:'_blank'}
+      %a.video{href: entry.content_url, target:'_blank'}
         =entry.title
     %p
-      %a.video{href: entry.img_url, target:'_blank'}
+      %a.video{href: entry.content_url, target:'_blank'}
         Watch video
     = render 'social', entry: entry

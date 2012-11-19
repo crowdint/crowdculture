@@ -1,12 +1,12 @@
 -@entries.each do |entry|
-  - case entry.content_type
-    -when 'image'
+  - case entry.type
+    -when 'Image'
       = render 'image', entry: entry
-    -when 'link'
+    -when 'Link'
       = render 'link', entry: entry
-    -when 'video'
+    -when 'Video'
       = render 'video', entry: entry
-    -when 'tweet'
+    -when 'Tweet'
       = render 'tweet', entry: entry
-    -when 'employee'
+    -when 'Employee'
       = render 'employee', entry: entry

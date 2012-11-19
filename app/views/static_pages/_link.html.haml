@@ -2,6 +2,6 @@
 .box.quote{:style => "background:#{get_color};", class: "col#{s}"}
   .box-inner
     %h1
-      %a{href: entry.img_url, target: '_blank'}
+      %a{href: entry.content_url, target: '_blank'}
         =entry.title
     = render 'social', entry: entry

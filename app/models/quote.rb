@@ -1,0 +1,2 @@
+class Quote < Entry
+end
