@@ -193,11 +193,12 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
   .mask {top:-300px;left:-300px}
 }
 .employee{
+  p{-o-transition:all ease 0.4s;-moz-transition: all ease 0.4s;-webkit-transition: all ease 0.4s;transition: all ease 0.4s;}
   h1{top:900px;left:0;position:absolute;font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
   &:hover h1{top:30%;};
-  &:hover p.role {top:60%;};
-  &:hover p.twt {top:80%;};
-  p.role, p.twt{top:900px;left:0;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
+  &:hover p.role, &:hover p.twt{left:5%;};
+  p.role{top:60%;left:-900px;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
+  p.twt{top:80%;left:-900px;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
 }
 
 /* footer  **********************************************/
