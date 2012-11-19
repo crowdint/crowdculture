@@ -5,7 +5,7 @@ class ImplementStiOnEntries < ActiveRecord::Migration
   end
 
   def down
-    remove_column :entries, :content_url
-    remove_column :entries, :type
+    rename_column :entries, :content_url, :img_url
+    rename_column :entries, :type, :content_type
   end
 end
