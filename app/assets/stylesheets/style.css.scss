@@ -125,10 +125,10 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
 /* showcase stuff **********************************************/
 
 #showcase {background:#90c855 url(/assets/bkg_green.png);overflow:hidden;}
-#showcase-inner {overflow:hidden;position:relative;margin:0 auto;color:#333;position:relative;}
+#showcase-inner {overflow:hidden;position:relative;margin:0 auto;color:#333;position:relative;padding-top: 8px;}
 
 .box {
-  width:250px;min-width:250px;float:left;
+  width:250px;min-width:250px;float:left;overflow:visible;
   -webkit-transition-duration: 1s;-moz-transition-duration: 1s;-ms-transition-duration: 1s;-o-transition-duration: 1s;transition-duration: 1s;
   -webkit-transition-property: height, width;-moz-transition-property: height, width;-ms-transition-property: height, width;-o-transition-property: height, width;transition-property: height, width;
   -webkit-transition-property: -webkit-transform, opacity;-moz-transition-property: -moz-transform, opacity;-ms-transition-property: -ms-transform, opacity;-o-transition-property: top, left, opacity;transition-property: transform, opacity;
@@ -203,6 +203,8 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
   h1{top:900px;left:0;position:absolute;font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
   &:hover h1{top:30%;};
   &:hover p.role, &:hover p.twt{left:5%;};
+  /*&:hover .magma{top:-8px;background-position:-176px -1px;z-index:10;} */ 
+  .magma{background:url(/assets/sprite.png) no-repeat -176px -1px;z-index:1;height:35px;width:51px;position:absolute;top:-8px;left:0;}
   p.role{top:60%;left:-900px;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
   p.twt{top:80%;left:-900px;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
 }

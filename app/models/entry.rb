@@ -47,15 +47,9 @@ class Entry < ActiveRecord::Base
           author =  get_author(entry.entry_id)
           title = get_title(entry, author)
           url_type = get_content_url(entry, author)
-          box_size = 1
-          if url_type[1] == 'Image'
-            avatar = get_avatar(url_type[0])
-            imgs += 1
-          elsif url_type[1] == 'Tweet'
-            box_size = Tweet.get_tweet_length(title)
-          else
-            avatar = nil
-          end 
+          imgs += 1 if url_type[1] == 'Image'
+          box_size = get_box_size(url_type[1], title)
+          avatar = get_avatar(url_type[0], url_type[1])
           create_entry(url_type[1], author, entry.published, title, entry.entry_id, url_type[0].to_s, box_size, avatar)
         end
         imgs
@@ -70,6 +64,10 @@ class Entry < ActiveRecord::Base
                                 type: type,
                                 box_size: box_size,
                                 avatar: avatar)
+      end
+
+      def get_box_size(type, title)
+        type == 'Tweet' ? box_size = Tweet.get_tweet_length(title) : 1
       end
 
       def get_title(entry, author)
@@ -106,18 +104,22 @@ class Entry < ActiveRecord::Base
         end
       end
       
-      def get_avatar(img_url)
-        avatar = URI.parse(URI.encode(img_url.to_s))
+      def get_avatar(img_url, type)
+        if type == 'Image'
+          Image.get_avatar(img_url)
+        else
+          nil
+        end 
       end
 
       def get_img_src(entry)
         html = Nokogiri::HTML(entry)
-        img = html.css('img/@src')
+        html.css('img/@src')
       end
 
       def get_link_href(entry)
         html = Nokogiri::HTML(entry)
-        url = html.css('a/@href')
+        html.css('a/@href')
       end
 
       def get_video_src(entry)
@@ -130,15 +132,14 @@ class Entry < ActiveRecord::Base
 
       def get_author(entry)
         if entry.index('culture') != nil
-          author = 1 #tumblr
+          1 #tumblr
         elsif entry.index('flickr') != nil
-          author = 2 #flickr
+          2 #flickr
         elsif entry.index('distilleryimage') != nil
-          author = 3 #instagram
+          3 #instagram
         else
-          author = 4 #twitter
+          4 #twitter
         end
-        author
       end
 
     end

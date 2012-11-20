@@ -15,4 +15,8 @@ class Image < Entry
       entry.update_attribute(:box_size, 2)
     end
   end
+
+  def self.get_avatar(img_url)
+    URI.parse(URI.encode(img_url.to_s))
+  end
 end
