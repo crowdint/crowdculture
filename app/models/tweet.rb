@@ -4,6 +4,14 @@ class Tweet < Entry
   end
 
   def self.paint_tweet_text(text)
-    #tweet hash color #7fbfb9
+    words = text.downcase.split
+    words.each_with_index do |word, i|
+      if word[0,1] == "@" || word[0,1] == "#"
+        words[i] = "<span>#{word}</span>"
+      elsif word[0,7] == "http://"
+        words[i] = "<span>#{word}</span>"
+      end    
+    end
+    words.join(" ")
   end
 end

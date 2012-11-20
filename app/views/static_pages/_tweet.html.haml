@@ -7,4 +7,4 @@
       %a.favorite{href:entry.content_url}
     %h1
       %a{href: entry.content_url, target:'_blank'}
-        =entry.title
+        =raw "#{entry.title}"

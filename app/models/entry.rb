@@ -75,7 +75,7 @@ class Entry < ActiveRecord::Base
       def get_title(entry, author)
         case author
         when 4 #twitter
-          entry.title[10..-1]
+          Tweet.paint_tweet_text(entry.title[10..-1])
         when 1 #tumblr
           doc = Nokogiri::HTML(entry.summary)
           doc.xpath("//text()").to_s
