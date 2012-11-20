@@ -4,7 +4,7 @@ function show_entries(){
   $('.loading').hide();
   $('a#more-items').show();
 }
-<% if @entries.all.count>0 %>
+<% if @entries.count>0 %>
   var page = <%=params[:page]%>
   var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>").css('opacity', '0');;
   if ($boxes.find('img').length > 0){

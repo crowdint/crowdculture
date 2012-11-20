@@ -51,7 +51,8 @@ $(document).ready ->
     page += 1
 
   get_entries_per_page()
-
+  
+  $('#feed_select').val("0")
   $('#feed_select').change (e) ->
     page = 1
     feed = this.value

@@ -1,11 +1,9 @@
 class Image < Entry
 
   def self.check_news_box_size(news)
-    entries = Entry.find(:all, :order => "id desc", :limit => news)
+    entries = Image.find(:all, :order => "id desc", :limit => news)
     entries.each do |entry|
-      if entry.avatar_file_name != nil
-        get_size(entry)
-      end
+      get_size(entry)
     end
   end
 

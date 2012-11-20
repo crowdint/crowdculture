@@ -42,19 +42,34 @@ class Entry < ActiveRecord::Base
       end
 
       def add_news(entries)
+        imgs = 0
         entries.each do |entry|
           author =  get_author(entry.entry_id)
           title = get_title(entry, author)
           url_type = get_content_url(entry, author)
-          url_type[1] == 'Image' ? avatar = get_avatar(url_type[0]) : avatar = nil
-          url_type[1].constantize.create(feed_id: author,  
-                                          published_date: entry.published, 
-                                          title: title, 
-                                          entry_id: entry.entry_id,
-                                          content_url: url_type[0].to_s,
-                                          type: url_type[1].constantize.to_s,
-                                          avatar: avatar)
+          box_size = 1
+          if url_type[1] == 'Image'
+            avatar = get_avatar(url_type[0])
+            imgs += 1
+          elsif url_type[1] == 'Tweet'
+            box_size = Tweet.get_tweet_length(title)
+          else
+            avatar = nil
+          end 
+          create_entry(url_type[1], author, entry.published, title, entry.entry_id, url_type[0].to_s, box_size, avatar)
         end
+        imgs
+      end
+
+      def create_entry(type, feed_id, published_date, title, entry_id, content_url, box_size, avatar)
+        type.constantize.create(feed_id: feed_id,
+                                published_date: published_date,
+                                title: title,
+                                entry_id: entry_id,
+                                content_url: content_url,
+                                type: type,
+                                box_size: box_size,
+                                avatar: avatar)
       end
 
       def get_title(entry, author)

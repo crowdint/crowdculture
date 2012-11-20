@@ -155,18 +155,21 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
   }
 }
 
+/* tweet box **********************************************/
 .tweet{background:#fff;
   a{color:#797970;
   &:hover{color:#797970;};
   }
-  h1 {font-size:15px;font-weight:normal;text-transform:uppercase;padding:1em 1em 1em 0;}
+  h1 {font-size:13px;font-weight:normal;text-transform:uppercase;padding:1em 1em 1em 2.6em;
+    span{color:#7fbfb9;}
+  }
   &:hover{
     background:#ddd;
   }
-  .tweet-share{width:23px;height:90px;background:#fff;float:left;}
+  .tweet-share{width:23px;height:75px;background:#fff;float:left;}
   .comment{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -56px;display:block;&:hover{background-position:-209px -56px;}}
-  .retweet{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -81px;display:block;&:hover{background-position:-209px -81px;}}
-  .favorite{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -101px;display:block;&:hover{background-position:-209px -101px;}}
+  .retweet{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -81px;display:block;&:hover{background-position:-210px -81px;}}
+  .favorite{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -101px;display:block;&:hover{background-position:-210px -101px;}}
 }
 
 .touch .mask {width:1123px;height:1029px;background:url(/assets/trans2.png);position:absolute;top:105%;left:105%}
@@ -177,6 +180,7 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
 .zoomit {width:73px;height:22px;background:url(/assets/sprite.png) no-repeat -127px -219px;position:absolute;float:right;}
 .ghost{visibility:hidden};
 
+/* video box **********************************************/
 .vid{
   h1 {font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#fff;width:100%;display:block;}
   p{position:absolute;top:-30px;right:0;text-align:center;display: block;width: 100%;text-transform:uppercase;
@@ -192,6 +196,8 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
   .social-items {top:8px;}
   .mask {top:-300px;left:-300px}
 }
+
+/* employee box **********************************************/
 .employee{
   p{-o-transition:all ease 0.4s;-moz-transition: all ease 0.4s;-webkit-transition: all ease 0.4s;transition: all ease 0.4s;}
   h1{top:900px;left:0;position:absolute;font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
