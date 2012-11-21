@@ -1,6 +1,6 @@
 class Tweet < Entry
   def self.get_tweet_length(text)
-    text.length > 50 ? 2 : 1
+    text.length > 70 ? 2 : 1
   end
 
   def self.paint_tweet_text(text)

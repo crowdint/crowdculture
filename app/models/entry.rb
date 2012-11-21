@@ -46,9 +46,9 @@ class Entry < ActiveRecord::Base
         entries.each do |entry|
           author =  get_author(entry.entry_id)
           title = get_title(entry, author)
-          url_type = get_content_url(entry, author)
+          url_type = get_content_url(entry, author) #gets an array [url, type]
           imgs += 1 if url_type[1] == 'Image'
-          box_size = get_box_size(url_type[1], title)
+          box_size = get_box_size(url_type[1], entry.title)
           avatar = get_avatar(url_type[0], url_type[1])
           create_entry(url_type[1], author, entry.published, title, entry.entry_id, url_type[0].to_s, box_size, avatar)
         end
@@ -67,7 +67,7 @@ class Entry < ActiveRecord::Base
       end
 
       def get_box_size(type, title)
-        type == 'Tweet' ? box_size = Tweet.get_tweet_length(title) : 1
+        type == 'Tweet' ? box_size = Tweet.get_tweet_length(title[10..-1]) : 1
       end
 
       def get_title(entry, author)
