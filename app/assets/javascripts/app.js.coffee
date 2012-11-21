@@ -3,6 +3,8 @@ feed = 0
 page = 1
 $(document).ready ->
   
+  init_masonry()
+
   $('body').delegate ".twitter-share-button", "click", (e) ->
     e.preventDefault()
     API_URL = "http://cdn.api.twitter.com/1/urls/count.json"
@@ -92,8 +94,6 @@ $(document).ready ->
         type: "swf"
 
       false
-
-  init_masonry()
   
   $ ->
     $("#btn-about").toggle (->

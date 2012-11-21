@@ -1,6 +1,6 @@
 container = $('#showcase-inner');
-function show_entries(){
-  $boxes.animate({opacity: 1});
+function show_entries(boxes){
+  $('.box').animate({opacity: 1});
   $('.loading').hide();
   $('a#more-items').show();
 }
@@ -8,14 +8,14 @@ function show_entries(){
   var page = <%=params[:page]%>
   var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>").css('opacity', '0');;
   if ($boxes.find('img').length > 0){
-    container.append($boxes).masonry('appended', $boxes, true);
+    container.append($boxes);
     container.imagesLoaded(function(){
       container.masonry('reload', function(){
-        show_entries();
+        show_entries($boxes);
       }); 
     });
   }else{
-    container.append($boxes).masonry('appended', $boxes, true, function(){
+    container.append($boxes, function(){
       show_entries();
       container.masonry('reload');
     });   
