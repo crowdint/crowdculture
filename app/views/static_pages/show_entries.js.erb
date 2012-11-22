@@ -8,7 +8,6 @@ function show_entries(boxes){
   var page = <%=params[:page]%>
   var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>").css('opacity', '0');;
   if ($boxes.find('img').length > 0){
-    alert('notwi');
     container.append($boxes).masonry('appended', $boxes, true);
     container.imagesLoaded(function(){
       container.masonry('reload', function(){
@@ -16,9 +15,7 @@ function show_entries(boxes){
       }); 
     });
   }else{
-    alert('tweet');
     container.append($boxes).masonry('appended', $boxes, true, function(){
-      alert('tweet');
       show_entries();
       container.masonry('reload');
     });   
