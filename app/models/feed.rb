@@ -20,9 +20,10 @@ class Feed < ActiveRecord::Base
       require 'feedzirra'
       feeds = get_feeds
       news = get_news(feeds)
+      imgs_fb = Image.get_fb_images_news
       if !news.blank?
         imgs = Entry.add_news(news)
-        Image.check_news_box_size(imgs)
+        Image.check_news_box_size(imgs + imgs_fb)
       end
     end
 

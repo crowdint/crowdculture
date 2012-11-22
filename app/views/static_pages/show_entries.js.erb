@@ -8,14 +8,17 @@ function show_entries(boxes){
   var page = <%=params[:page]%>
   var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>").css('opacity', '0');;
   if ($boxes.find('img').length > 0){
-    container.append($boxes);
+    alert('notwi');
+    container.append($boxes).masonry('appended', $boxes, true);
     container.imagesLoaded(function(){
       container.masonry('reload', function(){
-        show_entries($boxes);
+        show_entries();
       }); 
     });
   }else{
-    container.append($boxes, function(){
+    alert('tweet');
+    container.append($boxes).masonry('appended', $boxes, true, function(){
+      alert('tweet');
       show_entries();
       container.masonry('reload');
     });   

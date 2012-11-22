@@ -141,6 +141,5 @@ class Entry < ActiveRecord::Base
           4 #twitter
         end
       end
-
     end
 end

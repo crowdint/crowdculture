@@ -11,6 +11,7 @@ gem 'rack-google-analytics', :require => 'rack/google-analytics'
 gem "will_paginate", "~> 3.0.3"
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk'
+gem 'koala', '1.3.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
