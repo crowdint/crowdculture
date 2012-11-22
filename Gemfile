@@ -18,6 +18,7 @@ group :development, :test do
   gem 'rspec-rails', '2.9.0'
   gem 'annotate', '~> 2.4.1.beta'
   gem "cucumber", "~> 1.2.1"
+  gem 'simplecov', :require => false
 end
 
 group :assets do
