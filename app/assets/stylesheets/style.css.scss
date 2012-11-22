@@ -148,8 +148,8 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
 }
 
 .image h1 {top:900px;left:0;position:absolute;font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
-.quote h1 {font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#FFF;padding:2em 2%;width:96%;display:block;}
-.quote{
+.link h1 {font-size:20px;text-align:center;line-height:28px;font-weight:normal;text-transform:uppercase;color:#FFF;padding:2em 2%;width:96%;display:block;}
+.link{
   a, a:visited {color:#FFF;
     &:hover{text-decoration:underline;}
   }
@@ -166,7 +166,7 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
   &:hover{
     background:#ddd;
   }
-  .tweet-share{width:23px;height:100%;background:#fff;float:left;}
+  .tweet-share{width:23px;height:100%;background:#fff;float:left;padding:5px;}
   .comment{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -56px;display:block;&:hover{background-position:-209px -56px;}}
   .retweet{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -81px;display:block;&:hover{background-position:-210px -81px;}}
   .favorite{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -101px;display:block;&:hover{background-position:-210px -101px;}}
@@ -204,7 +204,7 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
   &:hover h1{top:30%;};
   &:hover p.role, &:hover p.twt{left:5%;};
   /*&:hover .magma{top:-8px;background-position:-176px -1px;z-index:10;} */ 
-  .magma{background:url(/assets/sprite.png) no-repeat -176px -1px;z-index:1;height:35px;width:51px;position:absolute;top:-8px;left:0;}
+  .magma{background:url(/assets/sprite.png) no-repeat -176px -1px;z-index:1;height:35px;width:51px;position:absolute;top:-8px;left:10px;}
   p.role{top:60%;left:-900px;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
   p.twt{top:80%;left:-900px;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
 }

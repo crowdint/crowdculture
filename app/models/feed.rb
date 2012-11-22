@@ -30,7 +30,10 @@ class Feed < ActiveRecord::Base
     def get_news(feeds)
       news=[]
       feeds.keys.each do |url|
-        entries = feeds[url].entries
+        begin
+          entries = feeds[url].entries
+        rescue Exception => ex
+        end
         news = check_for_news(entries ,news)
       end
       news
