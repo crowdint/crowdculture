@@ -33,6 +33,7 @@ class Feed < ActiveRecord::Base
         begin
           entries = feeds[url].entries
         rescue Exception => ex
+          entries = []
         end
         news = check_for_news(entries ,news)
       end
