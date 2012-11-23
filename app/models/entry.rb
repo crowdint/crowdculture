@@ -50,30 +50,31 @@ class Entry < ActiveRecord::Base
       def add_news(entries)
         imgs = 0
         entries.each do |entry|
-          author =  get_author(entry.entry_id)
-          title = get_title(entry, author)
-          url_type = get_content_url(entry, author) #gets an array [url, type]
-          imgs += 1 if url_type[1] == 'Image'
-          box_size = get_box_size(url_type[1], entry.title)
-          avatar = get_avatar(url_type[0], url_type[1])
-          create_entry(url_type[1], author, entry.published, title, entry.entry_id, url_type[0].to_s, box_size, avatar)
+          record = create_entry(entry)
+          imgs += 1 if record.type == 'Image'
+          record.save
+          print record.errors.full_messages
+          print record.type + " from feed: " + record.feed_id.to_s + " saved" + "\n"
         end
         imgs
       end
 
-      def create_entry(type, feed_id, published_date, title, entry_id, content_url, box_size, avatar)
-        type.constantize.create(feed_id: feed_id,
-                                published_date: published_date,
-                                title: title,
-                                entry_id: entry_id,
-                                content_url: content_url,
-                                type: type,
-                                box_size: box_size,
-                                avatar: avatar)
+      def create_entry(entry)
+        feed_id = get_author(entry.entry_id)
+        type = get_type(feed_id, entry)
+        record = type.constantize.new
+        record.feed_id = feed_id
+        record.title = get_title(entry, record.feed_id)
+        record.content_url = get_content_url(record, entry)
+        record.box_size = get_box_size(record.type, record.title)
+        record.avatar = get_avatar(record.type, record.content_url)
+        record.published_date = entry.published
+        record.entry_id = entry.entry_id
+        record
       end
 
       def get_box_size(type, title)
-        type == 'Tweet' ? box_size = Tweet.get_tweet_length(title[10..-1]) : 1
+        type == 'Tweet' ? Tweet.get_tweet_length(title[10..-1]) : 1
       end
 
       def get_title(entry, author)
@@ -88,29 +89,53 @@ class Entry < ActiveRecord::Base
         end
       end
 
-      def get_content_url(entry, author) #returns array
-        if author == 1 #tumblr
-          get_tumblr_content(entry.summary)
-        elsif author == 4 #twitter
-          [entry.url, 'Tweet']
+      def get_type(feed_id, entry)
+        case feed_id
+        when 1
+          get_tumblr_type(entry.summary)
+        when 4
+          'Tweet'
         else
-          [get_img_src(entry.summary), 'Image']
+          'Image'
         end
       end
 
-      def get_tumblr_content(summary) #returns array
-        if !get_img_src(summary).blank?
-          [get_img_src(summary), 'Image']
-        elsif !get_video_src(summary).blank?
-          [get_video_src(summary), 'Video']
-        elsif !get_link_href(summary).blank?
-          [get_link_href(summary), 'Link']
+      def get_content_url(record, entry)
+        case record.feed_id
+        when 1
+          get_tumblr_content_url(record.type, entry.summary)
+        when 4
+          entry.url
         else
-          ['', 'Quote']
+          get_img_src(entry.summary)
+        end
+      end
+
+      def get_tumblr_type(summary)
+        if !get_img_src(summary).blank?
+          'Image'
+        elsif !get_video_src(summary).blank?
+          'Video'
+        elsif !get_link_href(summary).blank?
+          'Link'
+        else
+          'Quote'
+        end
+      end
+
+      def get_tumblr_content_url(type, summary)
+        if type == 'Image'
+          get_img_src(summary)
+        elsif type == 'Video'
+          get_video_src(summary)
+        elsif type == 'Link'
+          get_link_href(summary)
+        else
+          ''
         end
       end
       
-      def get_avatar(img_url, type)
+      def get_avatar(type, img_url)
         if type == 'Image'
           Image.get_avatar(img_url)
         else

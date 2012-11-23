@@ -22,6 +22,7 @@ class Feed < ActiveRecord::Base
       news = get_news(feeds)
       imgs_fb = Image.get_fb_images_news
       if !news.blank?
+        print "We got news!"+ "\n"
         imgs = Entry.add_news(news)
         Image.check_news_box_size(imgs + imgs_fb)
       end
@@ -41,6 +42,7 @@ class Feed < ActiveRecord::Base
     end
 
     def get_feeds
+      print "Getting feeds" + "\n"
       feeds_urls = Feed.all
       feeds_urls_array=[]
       feeds_urls.each do |feed|
@@ -50,6 +52,7 @@ class Feed < ActiveRecord::Base
     end
 
     def check_for_news(entries, news)
+      print "Checking for news" + "\n"
       entries.each do |entry|
         if Entry.exists?(:entry_id => entry.entry_id)
           break

@@ -61,14 +61,15 @@ class Image < Entry
     end
 
     def add_fb_news(photo)
-      id = photo["id"]
-      feed_id = 5
-      content_url = photo["source"]
-      published_date = photo["created_time"]
-      title = "Crowd interactive - The Best Place to Work"
-      avatar = get_avatar(content_url)
-      Image.create(entry_id: id, content_url: content_url, feed_id: feed_id, 
-                   published_date: published_date, title: title, avatar: avatar)
+      img = Image.new
+      img.entry_id = photo["id"]
+      img.feed_id = 5
+      img.content_url = photo["source"]
+      img.published_date = photo["created_time"]
+      img.title = "Crowd interactive - The Best Place to Work"
+      img.avatar = get_avatar(content_url)
+      img.save
+      print 'New Image from facebook' + "\n"
     end
   end
 end

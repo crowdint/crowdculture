@@ -158,13 +158,13 @@ footer#footer_top {text-align:center;font-size:11px;font-family:'trebuchet ms', 
 /* tweet box **********************************************/
 .tweet{background:#fff;
   a{color:#797970;
-  &:hover{color:#797970;};
+    &:hover{color:#797970;};
   }
   h1 {font-size:13px;font-weight:normal;text-transform:uppercase;padding:1em 1em 1em 2.6em;
     span{color:#7fbfb9;}
   }
   &:hover{
-    background:#ddd;
+    background:#eee;
   }
   .tweet-share{width:23px;height:100%;background:#fff;float:left;padding:5px;}
   .comment{height:23px;width:23px;background:url(/assets/sprite.png) no-repeat -187px -56px;display:block;&:hover{background-position:-209px -56px;}}
