@@ -53,7 +53,6 @@ class Entry < ActiveRecord::Base
           record = create_entry(entry)
           imgs += 1 if record.type == 'Image'
           record.save
-          print record.errors.full_messages
           print record.type + " from feed: " + record.feed_id.to_s + " saved" + "\n"
         end
         imgs
@@ -64,13 +63,17 @@ class Entry < ActiveRecord::Base
         type = get_type(feed_id, entry)
         record = type.constantize.new
         record.feed_id = feed_id
+        get_entry_attributes(record, entry)
+        record
+      end
+
+      def get_entry_attributes(record, entry)
         record.title = get_title(entry, record.feed_id)
         record.content_url = get_content_url(record, entry)
         record.box_size = get_box_size(record.type, record.title)
         record.avatar = get_avatar(record.type, record.content_url)
         record.published_date = entry.published
         record.entry_id = entry.entry_id
-        record
       end
 
       def get_box_size(type, title)

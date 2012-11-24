@@ -30,6 +30,7 @@ class Feed < ActiveRecord::Base
 
     def get_news(feeds)
       news=[]
+      print "Checking for news..." + "\n"
       feeds.keys.each do |url|
         begin
           entries = feeds[url].entries
@@ -52,7 +53,6 @@ class Feed < ActiveRecord::Base
     end
 
     def check_for_news(entries, news)
-      print "Checking for news" + "\n"
       entries.each do |entry|
         if Entry.exists?(:entry_id => entry.entry_id)
           break
