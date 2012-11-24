@@ -148,19 +148,21 @@ class Entry < ActiveRecord::Base
 
       def get_img_src(entry)
         html = Nokogiri::HTML(entry)
-        html.css('img/@src')
+        html.css('img/@src').to_s
       end
 
       def get_link_href(entry)
         html = Nokogiri::HTML(entry)
-        html.css('a/@href')
+        html.css('a/@href').to_s
       end
 
       def get_video_src(entry)
         html = Nokogiri::HTML(entry)
-        url = html.css('iframe/@src')
+        url = html.css('iframe/@src').to_s
         if url.index('vimeo') != nil
           "http://vimeo.com/#{url.to_s[/\d+/]}"
+        else
+          url
         end
       end
 
