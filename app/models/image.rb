@@ -67,7 +67,7 @@ class Image < Entry
       img.content_url = photo["source"]
       img.published_date = photo["created_time"]
       img.title = "Crowd interactive - The Best Place to Work"
-      img.avatar = get_avatar(content_url)
+      img.avatar = get_avatar(img.content_url)
       img.save
       print 'New Image from facebook' + "\n"
     end
