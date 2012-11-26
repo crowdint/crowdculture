@@ -34,16 +34,16 @@ $(document).ready ->
   get_entries_per_page = ->
     per_page = 0
     if Modernizr.mq('only all and (max-width: 480px)') 
-      per_page = 5
+      per_page = 8
     else if Modernizr.mq('only all and (max-width: 1024px)') 
-      per_page = 10
+      per_page = 13
     else if Modernizr.mq('only all and (max-width: 1280px)') 
-      per_page = 15
+      per_page = 18
     else if Modernizr.mq('only all and (max-width: 1920px)') 
-      per_page = 25
+      per_page = 28
     else if Modernizr.mq('only all and (max-width: 2560px)') 
-      per_page = 35
-    else per_page = 10
+      per_page = 38
+    else per_page = 13
     show_entries()
 
   show_entries = () ->
