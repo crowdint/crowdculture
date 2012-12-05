@@ -17,50 +17,35 @@ class Feed < ActiveRecord::Base
 
   class << self
     def update_feeds
-      require 'feedzirra'
-      feeds = get_feeds
-      news = get_news(feeds)
-      imgs_fb = Image.get_fb_images_news
-      if !news.blank?
-        print "We got news!"+ "\n"
-        imgs = Entry.add_news(news)
-        Image.check_news_box_size(imgs + imgs_fb)
-      end
-    end
-
-    def get_news(feeds)
-      news=[]
-      print "Checking for news..." + "\n"
-      feeds.keys.each do |url|
-        begin
-          entries = feeds[url].entries
-        rescue Exception => ex
-          entries = []
-        end
-        news = check_for_news(entries ,news)
-      end
-      news
-    end
-
-    def get_feeds
-      print "Getting feeds" + "\n"
-      feeds_urls = Feed.all
-      feeds_urls_array=[]
+      feeds_urls = get_feeds_urls
       feeds_urls.each do |feed|
-        feeds_urls_array<<feed.url
-      end
-      feeds = Feedzirra::Feed.fetch_and_parse(feeds_urls_array)
-    end
-
-    def check_for_news(entries, news)
-      entries.each do |entry|
-        if Entry.exists?(:entry_id => entry.entry_id)
-          break
-        else
-          news<<entry
+        feed_entries = Parser.parse_feed(feed)
+        news = Entry.check_for_news(feed_entries)
+        if !news.blank?
+          imgs = Parser.parse_entries(news, get_feed_name_from_url(feed))
+          Image.check_news_box_size(imgs)
         end
       end
-      news
+    end
+
+    def get_feeds_urls
+      feeds = Feed.all
+      urls = []
+      feeds.each {|feed| urls << feed.url unless feed.url == 'none'}
+      urls.delete('none')
+      urls
+    end
+
+    def get_feed_id(name)
+      Feed.find_by_author(name).id if Feed.find_by_author(name)
+    end
+
+    def get_feed_author(id)
+      Feed.find(id).author
+    end
+
+    def get_feed_author_from_url(url)
+      Feed.find_by_url(url).author
     end
   end
 

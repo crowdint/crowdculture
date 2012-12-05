@@ -5,7 +5,7 @@
 #  id                  :integer         not null, primary key
 #  feed_id             :integer
 #  content_url         :string(255)
-#  published_date      :date
+#  published_date      :datetime
 #  title               :string(255)
 #  created_at          :datetime        not null
 #  updated_at          :datetime        not null

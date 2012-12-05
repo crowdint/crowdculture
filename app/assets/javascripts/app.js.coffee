@@ -1,5 +1,5 @@
 per_page = 0
-feed = 0
+feed = 'All'
 page = 1
 $(document).ready ->
   
