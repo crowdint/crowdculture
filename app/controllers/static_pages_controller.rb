@@ -18,7 +18,7 @@ class StaticPagesController < ApplicationController
           tweets = Tweet.most_recent_tweets
           merge_entries(entries, tweets)
         else
-          Entry.get_paginated_entries(page, per_page).map
+          get_paginated_entries(page, per_page).map
         end  
       end
 
