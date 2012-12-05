@@ -22,7 +22,7 @@ class Feed < ActiveRecord::Base
         feed_entries = Parser.parse_feed(feed)
         news = Entry.check_for_news(feed_entries)
         if !news.blank?
-          imgs = Parser.parse_entries(news, get_feed_name_from_url(feed))
+          imgs = Parser.parse_entries(news, get_feed_author_from_url(feed))
           Image.check_news_box_size(imgs)
         end
       end
