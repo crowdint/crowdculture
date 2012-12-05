@@ -27,7 +27,7 @@ class StaticPagesController < ApplicationController
       end
 
       def get_paginated_entries(page, per_page)
-        Entry.where("feed_id != 3").page(page).per(per_page)
+        Entry.where("feed_id != #{Feed.get_feed_id('Twitter')}").page(page).per(per_page)
       end
 
       def filtered_feed(feed, page, per_page)
