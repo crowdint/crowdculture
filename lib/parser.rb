@@ -4,11 +4,9 @@ module Parser
 
     def parse_feed(url)
       parsed_feed = Feedzirra::Feed.fetch_and_parse(url)
-      begin
         parsed_feed.entries
       rescue Exception => ex
         []
-      end
     end
     
     def parse_entries(entries, feed_author)
@@ -128,7 +126,9 @@ module Parser
 
     def get_fb_images
       api = Koala::Facebook::API.new
-      api.get_connections("10151330276113829", "photos")
+        api.get_connections("10151330276113829", "photos")
+      rescue Exception => ex
+        []
     end
 
   end
