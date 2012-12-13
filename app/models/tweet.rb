@@ -35,8 +35,8 @@ class Tweet < Entry
       words.join(" ")
     end
 
-    def most_recent_tweets
-      Tweet.find(:all, :limit => 4)
+    def most_recent_tweets(page)
+      Tweet.page(page).per(4)
     end
 
   end

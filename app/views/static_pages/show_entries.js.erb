@@ -5,7 +5,6 @@ function show_entries(boxes){
   $('a#more-items').show();
 }
 <% if @entries.count>0 %>
-  var page = <%=params[:page]%>
   var $boxes = $("<%= escape_javascript(render(partial: 'entries')) %>").css('opacity', '0');;
   if ($boxes.find('img').length > 0){
     container.append($boxes).masonry('appended', $boxes, true);

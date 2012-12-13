@@ -4,6 +4,14 @@ page = 1
 $(document).ready ->
   
   init_masonry()
+  
+  $('body').delegate ".retweet", "click", (e) ->
+    e.preventDefault()
+    elem = $(this)
+    text = elem.attr("data-text") || document.title
+    elemString = $('<div/>').html(text).text()
+    href = "http://twitter.com/home?status=RT @crowdint - " + elemString + "bz/s/retweet"
+    popup(href, elem)
 
   $('body').delegate ".twitter-share-button", "click", (e) ->
     e.preventDefault()
@@ -15,8 +23,9 @@ $(document).ready ->
 
     text = elem.attr("data-text") || document.title
     via = elem.attr("data-via") || ""
+    status = elem.attr("status") || ""
     related = encodeURIComponent(elem.attr("data-related")) || ""
-    href= TWEET_URL + "?&original_referer=" + encodeURIComponent(document.location.href) + "&source=tweetbutton&text=" + text + "&url=" + url + "&via=" + via
+    href= TWEET_URL + "?&original_referer=" + encodeURIComponent(document.location.href) + status + "&source=tweetbutton&text=" + text + "&url=" + url + "&via=" + via
     popup(href, elem)
     $.getJSON API_URL + "?callback=?&url=" + url, (data) ->
       elem.html data.count  

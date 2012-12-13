@@ -22,11 +22,11 @@ describe Feed do
   end
   
   describe "when calling feeds methods" do
-      feed1 = Feed.create(url:'url1', author:'author1')
-      feed2 = Feed.create(url:'url2', author:'author2')
-      let(:feeds) { Feed.get_feeds_urls }
+    feed1 = Feed.create(url:'url1', author:'author1')
+    feed2 = Feed.create(url:'url2', author:'author2')
+    let(:feeds) { Feed.get_feeds_urls }
 
-      subject{feeds}
+    subject{feeds}
 
     describe "#get_feeds_urls" do
       it {should include('url1')}

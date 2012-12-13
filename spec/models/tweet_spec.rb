@@ -73,20 +73,20 @@ describe Tweet do
         Tweet.paint_tweet_text(tweet).should == "beautiful tests <span>#not</span> <span>@crowdint</span> <span>http://link.com</span>"
       end
     end
+  end
 
-    describe "#most_recent_tweets" do
-      let(:oldest){ Tweet.create(entry_id:'1', title:'title1', feed_id:'1', published_date:'2000-10-31')}
-      Tweet.create(entry_id:'2', title:'title1', feed_id:'1', published_date:'2008-10-31')
-      Tweet.create(entry_id:'3', title:'title1', feed_id:'1', published_date:'2009-10-31')
-      Tweet.create(entry_id:'4', title:'title1', feed_id:'1', published_date:'2010-10-31')
-      Tweet.create(entry_id:'5', title:'title1', feed_id:'1', published_date:'2011-10-31')
-      let(:most_recent){ Tweet.create(entry_id:'6', title:'title1', feed_id:'1', published_date:'2012-10-31')}
-      
-      subject {Tweet.most_recent_tweets}
+  describe "#most_recent_tweets" do
+    let(:oldest){ Tweet.create(entry_id:'1', title:'title1', feed_id:'1', published_date:'2000-10-31')}
+    Tweet.create(entry_id:'2', title:'title1', feed_id:'1', published_date:'2008-10-31')
+    Tweet.create(entry_id:'3', title:'title1', feed_id:'1', published_date:'2009-10-31')
+    Tweet.create(entry_id:'4', title:'title1', feed_id:'1', published_date:'2010-10-31')
+    Tweet.create(entry_id:'5', title:'title1', feed_id:'1', published_date:'2011-10-31')
+    let(:most_recent){ Tweet.create(entry_id:'6', title:'title1', feed_id:'1', published_date:'2012-10-31')}
+    
+    subject {Tweet.most_recent_tweets(1)}
 
-      its (:count) {should be 4}
-      it {should_not include(oldest)}
-      it {should include(most_recent)}
-    end
+    its (:size) {should be 4}
+    it {should_not include(oldest)}
+    it {should include(most_recent)}
   end
 end

@@ -13,17 +13,14 @@ class StaticPagesController < ApplicationController
 
     private
       def all_feeds(page, per_page)
-        if page == '1'
-          entries = get_paginated_entries(page, per_page)
-          tweets = Tweet.most_recent_tweets
-          merge_entries(entries, tweets)
-        else
-          get_paginated_entries(page, per_page).map
-        end  
+          entries = get_paginated_entries(page, per_page).to_a
+          tweets = Tweet.most_recent_tweets(page).to_a
+          entries.count != 0 ? merge_entries(entries, tweets) : tweets.map
       end
 
       def merge_entries(entries, tweets)
-        (entries + tweets).sort! {|x,y| x.published_date <=> y.published_date}.reverse
+        4.times { entries.insert(rand(entries.count), tweets.pop) }
+        entries.map
       end
 
       def get_paginated_entries(page, per_page)
