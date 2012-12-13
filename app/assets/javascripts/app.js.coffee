@@ -10,7 +10,8 @@ $(document).ready ->
     elem = $(this)
     text = elem.attr("data-text") || document.title
     elemString = $('<div/>').html(text).text()
-    href = "http://twitter.com/home?status=RT @crowdint - " + elemString + "bz/s/retweet"
+    elemString = elemString.replace(/#/g, "%23")
+    href = "http://twitter.com/home?status=RT @crowdint - " + elemString
     popup(href, elem)
 
   $('body').delegate ".twitter-share-button", "click", (e) ->
@@ -18,11 +19,10 @@ $(document).ready ->
     API_URL = "http://cdn.api.twitter.com/1/urls/count.json"
     TWEET_URL = "https://twitter.com/intent/tweet";
     elem = $(this)
-
     url = encodeURIComponent(elem.attr("data-url") || document.location.href)
-
     text = elem.attr("data-text") || document.title
-    via = elem.attr("data-via") || ""
+    text = text.replace(/#/g, "%23")
+    via = "crowdint"
     status = elem.attr("status") || ""
     related = encodeURIComponent(elem.attr("data-related")) || ""
     href= TWEET_URL + "?&original_referer=" + encodeURIComponent(document.location.href) + status + "&source=tweetbutton&text=" + text + "&url=" + url + "&via=" + via
