@@ -99,7 +99,11 @@ $(document).ready ->
         title: @title
         width: 600
         height: 400
-        href: @href.replace(new RegExp("([0-9])", "i"), "moogaloop.swf?clip_id=$1")
+        href:
+          if @href.indexOf("youtube") > -1
+            @href = @href.replace(new RegExp("watch\\?v=", "i"), 'v/') + '&autoplay=1'
+          else
+            @href.replace(new RegExp("([0-9])", "i"), "moogaloop.swf?clip_id=$1") + '&autoplay=1'
         type: "swf"
 
       false
