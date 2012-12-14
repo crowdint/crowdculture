@@ -10,4 +10,8 @@ module StaticPagesHelper
   def random_number_from_colors
     rand(colors.length)
   end
+
+  def get_title_size(title)
+    'long' if title.size > 130
+  end
 end

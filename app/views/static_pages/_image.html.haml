@@ -4,7 +4,7 @@
     %img{:src => s > 1 ? entry.avatar.url : entry.avatar.url(:medium)}/
     .mask
       %a.zoom{:href => entry.avatar.url, :alt => entry.title, :rel => "gallery1"}
-    %h1
+    %h1{class: "#{get_title_size(entry.title)}"}
       %a.zoom{:href => entry.avatar.url, :alt => entry.title, :rel => "gallery2"}
         =entry.title
     = render 'social', entry: entry
