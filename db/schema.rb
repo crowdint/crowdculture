@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124215121) do
+ActiveRecord::Schema.define(:version => 20121217162712) do
 
   create_table "entries", :force => true do |t|
     t.integer  "feed_id"
     t.string   "content_url"
     t.datetime "published_date"
     t.string   "title"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "entry_id"
     t.string   "type"
     t.string   "avatar_file_name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20121124215121) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "box_size",            :default => 1
+    t.string   "special_tag",         :default => "none"
   end
 
   add_index "entries", ["entry_id"], :name => "altered_entries_id_index", :unique => true

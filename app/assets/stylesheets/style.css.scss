@@ -206,10 +206,12 @@ h1.long{font-size:18px;}
   &:hover h1{top:30%;};
   &:hover p.role, &:hover p.twt{left:5%;};
   /*&:hover .magma{top:-8px;background-position:-176px -1px;z-index:10;} */ 
-  .magma{background:url(/assets/sprite.png) no-repeat -176px -1px;z-index:1;height:35px;width:51px;position:absolute;top:-8px;left:10px;}
   p.role{top:60%;left:-900px;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
   p.twt{top:80%;left:-900px;position:absolute;font-size:20px;text-align:left;line-height:28px;font-weight:normal;text-transform:uppercase;color:#7bc3c3;padding:0 2%;width:96%;display:block;}
 }
+
+/* special tags ***********************************************/
+.magma{background:url(/assets/sprite.png) no-repeat -176px -1px;z-index:1;height:35px;width:51px;position:absolute;top:-8px;left:10px;}
 
 /* footer  **********************************************/
 footer#main-footer{padding:2px;}

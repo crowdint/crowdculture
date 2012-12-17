@@ -1,5 +1,6 @@
 - s = entry.box_size
 .box.vid{:style => "background-color:#{get_color};", class: "col#{s}"}
+  = render 'special_tag', entry: entry
   .box-inner
     .play
     .mask

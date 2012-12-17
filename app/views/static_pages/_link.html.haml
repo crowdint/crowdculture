@@ -1,5 +1,6 @@
 - s = entry.box_size
 .box.link{:style => "background:#{get_color};", class: "col#{s}"}
+  = render 'special_tag', entry: entry
   .box-inner
     %h1
       %a{href: entry.content_url, target: '_blank'}

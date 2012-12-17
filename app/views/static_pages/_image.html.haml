@@ -1,5 +1,6 @@
 - s = entry.box_size
 .box.image{class: "col#{s}"}
+  = render 'special_tag', entry: entry
   .box-inner
     %img{:src => s > 1 ? entry.avatar.url : entry.avatar.url(:medium)}/
     .mask

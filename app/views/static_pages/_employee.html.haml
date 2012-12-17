@@ -1,5 +1,5 @@
 .box.employee
-  .magma
+  = render 'special_tag', entry: entry
   .box-inner
     %img{:src => entry.avatar.url(:medium)}
     .mask
